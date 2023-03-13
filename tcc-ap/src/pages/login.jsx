@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-
 import {Input} from '../components/Input.jsx'
 import {Button} from '../components/Button.jsx'
+
 
 export function Login(){
     const [data, setData] = useState({});
@@ -25,13 +25,15 @@ export function Login(){
             .then(response => response.json())
             .then(data => setData(data))
             .catch(error => console.error(error));
+            
+            const userId = data._id
       };
 
       useEffect(() => {
         if(data.success === true){
           console.log("entrou")
         }else {
-          console.log("burro")
+          console.log("email ou senha incorretos")
         }
       })
 
