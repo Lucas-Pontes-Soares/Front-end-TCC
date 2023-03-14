@@ -26,12 +26,13 @@ export function Login(){
             .then(data => setData(data))
             .catch(error => console.error(error));
             
-            const userId = data._id
       };
 
       useEffect(() => {
         if(data.success === true){
           console.log("entrou")
+          console.log(data.token)
+          localStorage.setItem("AuthToken", data.token)
         }else {
           console.log("email ou senha incorretos")
         }

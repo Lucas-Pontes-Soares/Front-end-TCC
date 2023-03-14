@@ -13,6 +13,9 @@ export function Home(){
               <li>
                 <Link to="/cadastro">Cadastro</Link>
               </li>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
             </ul>
           </nav>
     
