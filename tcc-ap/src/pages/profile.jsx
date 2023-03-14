@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 export function Profile(){
     const [data, setData] = useState({});
 
+    //conferir se o usuario está logado
     useEffect(() => {
         const authToken = localStorage.getItem("AuthToken")
         if (authToken) {

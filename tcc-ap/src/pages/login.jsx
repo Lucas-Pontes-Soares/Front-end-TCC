@@ -33,6 +33,7 @@ export function Login(){
           console.log("entrou")
           console.log(data.token)
           localStorage.setItem("AuthToken", data.token)
+          localStorage.setItem("userId", data.user._id)
         }else {
           console.log("email ou senha incorretos")
         }

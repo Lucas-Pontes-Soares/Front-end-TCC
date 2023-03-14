@@ -16,6 +16,9 @@ export function Home(){
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
+              <li>
+                <Link to="/profileConfigurations">ProfileConfigurations</Link>
+              </li>
             </ul>
           </nav>
     
