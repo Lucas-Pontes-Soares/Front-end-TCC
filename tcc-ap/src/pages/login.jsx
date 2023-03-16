@@ -4,9 +4,8 @@ import {Button} from '../components/Button.jsx'
 
 
 export function Login(){
-    const [data, setData] = useState({});
 
-    const fazerLogin = () => {
+    async function fazerLogin () {
         const emailDigitado = document.getElementById("email")
         const senhaDigitada = document.getElementById("password")
 
@@ -15,29 +14,29 @@ export function Login(){
             password: senhaDigitada.value
         };
       
-        fetch('http://localhost:3000/user/loginuser', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-          })
-            .then(response => response.json())
-            .then(data => setData(data))
-            .catch(error => console.error(error));
-            
-      };
+        try{
+            const LoginResponse = await fetch('http://localhost:3000/user/loginuser', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(requestBody)
+            })
+            const LoginJson = await LoginResponse.json()
+            console.log(LoginJson)
 
-      useEffect(() => {
-        if(data.success === true){
-          console.log("entrou")
-          console.log(data.token)
-          localStorage.setItem("AuthToken", data.token)
-          localStorage.setItem("userId", data.user._id)
-        }else {
-          console.log("email ou senha incorretos")
+            if(LoginJson.success === true){
+              console.log("entrou")
+              localStorage.setItem("AuthToken", LoginJson.token)
+              localStorage.setItem("userId", LoginJson.user._id)
+            }else {
+              console.log("email ou senha incorretos")
+            }
+
+        }catch(erro){
+          console.log("erro " + erro)
         }
-      })
+      };
 
     return(
         <div className='login'>
@@ -45,8 +44,6 @@ export function Login(){
             <Input type="email" placeholder="Digite seu email" name="email" id="email"/>
             <Input type="password" placeholder="Digite sua senha" name="password" id="password"/>
             <Button value="Entrar" onclickFunction={fazerLogin}/>
-
-            {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
         </div>
     )
 }

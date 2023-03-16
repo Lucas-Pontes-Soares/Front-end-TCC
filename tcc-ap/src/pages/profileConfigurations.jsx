@@ -4,8 +4,6 @@ import {Input} from '../components/Input.jsx'
 import {Button} from '../components/Button.jsx'
 
 export function ProfileConfigurations(){
-    const [data, setData] = useState({});
-
     //conferir se o usuario está logado
     useEffect(() => {
         const authToken = localStorage.getItem("AuthToken")
@@ -16,7 +14,7 @@ export function ProfileConfigurations(){
         }
     })
 
-    function atualizarDados(){
+    async function atualizarDados(){
         const steamIdDigitado = document.getElementById("steam")
         const PSnameDigitado = document.getElementById("ps")
 
@@ -24,25 +22,25 @@ export function ProfileConfigurations(){
         const authToken = localStorage.getItem("AuthToken")
 
         const requestBody = {
-            token: authToken,
             SteamId: steamIdDigitado.value,
-            PSname: PSnameDigitado.value
+             PSname: PSnameDigitado.value
         };
 
-        fetch(`http://localhost:3000/user/updateUser/${userId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        })
-            .then(response => response.json())
-            .then(data => setData(data))
-            .catch(error => console.error(error));
+        try{
+            const response = await fetch(`http://localhost:3000/user/updateUser/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: authToken
+                },
+                body: JSON.stringify(requestBody)
+            })
+            const resposta = await response.json()
+            console.log(resposta)
 
-            if(data){
-                console.log(data)
-            }
+        }catch(erro){
+            console.log("erro "+ erro)
+        }
     }
     
     return(

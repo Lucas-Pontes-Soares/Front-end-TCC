@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
 export function Profile(){
-    const [data, setData] = useState({});
-
     //conferir se o usuario está logado
     useEffect(() => {
         const authToken = localStorage.getItem("AuthToken")
@@ -13,27 +11,53 @@ export function Profile(){
         }
     })
 
-    function buscarPerfil() {
-        const authToken = localStorage.getItem("AuthToken")
-
-        const requestBody = {
-            token: authToken
-        };
-    
-        fetch(`http://localhost:3000/steam/findGetPlayerSummaries/UserId/:76561198373878594`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        })
-            .then(response => response.json())
-            .then(data => setData(data))
-            .catch(error => console.error(error));
+    async function buscarDadosUsuario(authToken, userId){
+        try{
+            const result = await fetch(`http://localhost:3000/user/getUser/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                     token: authToken
+                },
+            })
+                const resultado = await result.json()
+                return resultado
+        }catch(err){
+            console.log("erro " + err)
+        }
         
-        console.log(data)
-
     }
+
+    async function buscarPerfilSteam(authToken, steamId){
+        try {
+            const result = await fetch(`http://localhost:3000/steam/findGetPlayerSummaries/UserId/${steamId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                     token: authToken
+                },
+            })
+            const resultado = await result.json()
+            return resultado
+        }catch(err){
+            console.log("erro " + err)
+        }
+    }
+
+    async function buscarPerfil() {
+        const authToken = localStorage.getItem("AuthToken")
+        const userId = localStorage.getItem("userId")
+
+        //buscar dados perfil
+        const dadosUsuario = await buscarDadosUsuario(authToken, userId)
+        console.log(dadosUsuario)
+
+        //buscar dados perfil da steam
+        const steamId = dadosUsuario.perfil.SteamId
+        const data = await buscarPerfilSteam(authToken, steamId)
+        console.log(data)
+    }
+    
     return(
         <div>
             <h1>Profile</h1>
