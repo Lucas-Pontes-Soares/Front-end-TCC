@@ -1,28 +1,24 @@
-import { Outlet, Link } from "react-router-dom";
-export function Home(){
-    return (
-        <>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/cadastro">Cadastro</Link>
-              </li>
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li>
-                <Link to="/profileConfigurations">ProfileConfigurations</Link>
-              </li>
-            </ul>
-          </nav>
-    
-          <Outlet />
-        </>
-      )
+import { BrowserRouter, Routes, Route, Link, HomeLayoutRoute } from "react-router-dom";
+import { NewRequest } from '../components/NewRequest.jsx';
+import { GetRequest } from '../components/GetRequest';
+import { Profile } from './profile.jsx';
+import { useState, useEffect } from "react";
+
+export function Home() {
+  useEffect(() => {
+    const authToken = localStorage.getItem("AuthToken")
+    if (authToken) {
+      console.log("Vc esta logado")
+    } else {
+      console.log("Realize seu login")
+    }
+  })
+
+  return (
+    <>
+    <h1>Hello</h1>
+    <NewRequest />
+    <GetRequest />
+    </>
+  )
 }

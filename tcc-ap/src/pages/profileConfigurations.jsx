@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import {Input} from '../components/Input.jsx'
 import {Button} from '../components/Button.jsx'
+import { EditRequest } from '../components/EditRequest';
+import { GetRequestByUserId } from '../components/GetRequestByUserId.jsx';
 
 export function ProfileConfigurations(){
     //conferir se o usuario está logado
@@ -23,7 +25,7 @@ export function ProfileConfigurations(){
 
         const requestBody = {
             SteamId: steamIdDigitado.value,
-             PSname: PSnameDigitado.value
+            PSname: PSnameDigitado.value
         };
 
         try{
@@ -50,6 +52,8 @@ export function ProfileConfigurations(){
             <Input type="text" placeholder="Digite seu nome da PS" name="steam" id="ps"/>
             <Button value="Atualizar" onclickFunction={atualizarDados}/>
 
+            <GetRequestByUserId />
+            <EditRequest />
         </div>
     )
 }

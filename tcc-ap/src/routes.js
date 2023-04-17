@@ -9,15 +9,13 @@ import {ProfileConfigurations} from "./pages/profileConfigurations";
 
 export function Rotas() {
    return(
-       <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Home />}>
+                <Route path="/" element={<Home />} />
                 <Route path="login" element={<Login />} />
                 <Route path="cadastro" element={<Cadastro />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="profileConfigurations" element={<ProfileConfigurations />} />
-            </Route>
+            
         </Routes>
-       </BrowserRouter>
    )
 }

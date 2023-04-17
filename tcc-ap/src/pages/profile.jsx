@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-
 export function Profile(){
     //conferir se o usuario está logado
+
     useEffect(() => {
         const authToken = localStorage.getItem("AuthToken")
         if (authToken) {
             console.log("Vc esta logado")
+
         } else {
             console.log("Realize seu login")
         }
@@ -57,11 +58,13 @@ export function Profile(){
         const data = await buscarPerfilSteam(authToken, steamId)
         console.log(data)
     }
+
     
     return(
         <div>
             <h1>Profile</h1>
             <button onClick={buscarPerfil}>Buscar Dados</button>
+            <h2>Suas Requisições: </h2>
         </div>
     )
 }
