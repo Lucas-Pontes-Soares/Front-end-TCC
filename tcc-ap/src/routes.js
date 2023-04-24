@@ -15,7 +15,7 @@ export function Rotas() {
                 <Route path="cadastro" element={<Cadastro />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="profileConfigurations" element={<ProfileConfigurations />} />
-            
+                
         </Routes>
    )
 }

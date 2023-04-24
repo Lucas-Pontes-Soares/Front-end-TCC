@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import {Input} from '../components/Input.jsx'
 import {Button} from '../components/Button.jsx'
-import { EditRequest } from '../components/EditRequest';
 import { GetRequestByUserId } from '../components/GetRequestByUserId.jsx';
 
 export function ProfileConfigurations(){
@@ -53,7 +52,6 @@ export function ProfileConfigurations(){
             <Button value="Atualizar" onclickFunction={atualizarDados}/>
 
             <GetRequestByUserId />
-            <EditRequest />
         </div>
     )
 }

@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 
 export function NewRequest(){
     useEffect(() => {
+        const authToken = localStorage.getItem("AuthToken")
+        if (authToken) {
+            console.log("Vc esta logado")
+        } else {
+            console.log("Realize seu login")
+        }
+
         const valor = document.querySelector("#value")
         const input = document.querySelector("#qtdPlayers")
         valor.textContent = input.value
@@ -35,7 +42,8 @@ export function NewRequest(){
             const resultado = await fetch("http://localhost:3000/playerrequest/createPlayerRequest", {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  token: localStorage.getItem("AuthToken")
                 },
                 body: JSON.stringify(requestBody)
             })
