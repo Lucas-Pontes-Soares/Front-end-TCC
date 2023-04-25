@@ -106,10 +106,8 @@ export function GetRequestByUserId() {
 
     return (
         <div>
-            <h1>Hello</h1>
             {result.map((item) => (
                 <div key={item._id}>
-                    <br />
                     <p>Próximo</p>
                     <Input type="text" placeholder={item.title} id="titulo"/>
                     <Input type="text" placeholder={item.game} id="jogo"/>

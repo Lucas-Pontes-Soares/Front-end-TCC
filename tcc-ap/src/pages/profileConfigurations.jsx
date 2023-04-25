@@ -5,26 +5,56 @@ import {Button} from '../components/Button.jsx'
 import { GetRequestByUserId } from '../components/GetRequestByUserId.jsx';
 
 export function ProfileConfigurations(){
+    const [userData, setUserData] = useState([]);
+
     //conferir se o usuario está logado
     useEffect(() => {
+        const userId = localStorage.getItem("userId")
         const authToken = localStorage.getItem("AuthToken")
+
         if (authToken) {
-            console.log("Vc esta logado")
+            console.log("Vc esta logado");
+            
+            (async () => {
+                //buscar dados do usuario
+                try{
+                    const result = await fetch(`http://localhost:3000/user/getUser/${userId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            token: authToken
+                        },
+                    })
+                    const resultado = await result.json()
+                    setUserData(resultado.perfil);
+                    
+                }catch(err){
+                    console.log("erro " + err)
+                }
+            })();
         } else {
             console.log("Realize seu login")
         }
-    })
+    }, [])
 
     async function atualizarDados(){
-        const steamIdDigitado = document.getElementById("steam")
-        const PSnameDigitado = document.getElementById("ps")
+        const first_name = document.getElementById("first_name");
+        const last_name = document.getElementById("last_name")
+        const nick = document.getElementById("nick")
+        const email = document.getElementById("email")
+        const steamId = document.getElementById("steam")
+        const PSname = document.getElementById("ps")
 
         const userId = localStorage.getItem("userId")
         const authToken = localStorage.getItem("AuthToken")
 
         const requestBody = {
-            SteamId: steamIdDigitado.value,
-            PSname: PSnameDigitado.value
+            first_name: first_name.value || userData.first_name,
+            last_name: last_name.value || userData.last_name,
+            nick: nick.value || userData.nick,
+            email: email.value || userData.email,
+            SteamId: steamId.value || userData.SteamId,
+            PSname: PSname.value || userData.PSname,
         };
 
         try{
@@ -43,14 +73,42 @@ export function ProfileConfigurations(){
             console.log("erro "+ erro)
         }
     }
+
+    async function deletarPerfil(){
+        const userId = localStorage.getItem("userId")
+        try {
+            const resultado = await fetch(`http://localhost:3000/user/deleteUser/${userId}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                     token: localStorage.getItem("AuthToken")
+                },
+            })
+            const resultadoJson = await resultado.json()
+            if (resultadoJson) {
+                console.log(resultadoJson);
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
     
     return(
         <div>
             <h1>Pagina Configurações do Perfil</h1>
+
+            <h2>Seus dados do perfil</h2>
+            <Input type="text" placeholder={userData.first_name} name="first_name" id="first_name" />
+            <Input type="text" placeholder={userData.last_name} name="last_name" id="last_name" />
+            <Input type="text" placeholder={userData.nick} name="nick" id="nick" />
+            <Input type="email" placeholder={userData.email} name="email" id="email" />
+            {/* <Input type="password" placeholder={userData.senha} name="" id="password" /> */}
             <Input type="number" placeholder="Digite seu id da Steam" name="ps" id="steam"/>
             <Input type="text" placeholder="Digite seu nome da PS" name="steam" id="ps"/>
             <Button value="Atualizar" onclickFunction={atualizarDados}/>
+            <Button value="Deletar" onclickFunction={deletarPerfil}/>
 
+            <h2>Suas requisições</h2>
             <GetRequestByUserId />
         </div>
     )
