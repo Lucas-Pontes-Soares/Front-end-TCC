@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route, Link, HomeLayoutRoute } from "react-router-dom";
 import { NewRequest } from '../components/NewRequest.jsx';
 import { GetRequest } from '../components/GetRequest';
-import { Profile } from './profile.jsx';
+import { Logout } from '../components/Logout';
 import { useState, useEffect } from "react";
 
 export function Home() {
@@ -19,6 +18,7 @@ export function Home() {
     <h1>Hello</h1>
     <NewRequest />
     <GetRequest />
+    <Logout />
     </>
   )
 }
