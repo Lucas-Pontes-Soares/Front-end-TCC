@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import {ProfileSteam} from '../components/ProfileSteam.jsx';
+import { ProfilePlaystation } from "../components/ProfilePlaystation.jsx";
 
 export function Profile(){
     const [userData, setUserData] = useState([]); //dados usuario do banco
     const [userSteamId, setUserSteamId] = useState(null); //SteamId do usuario do banco, inicia como nulo
+    const [userPSName, setUserPSName] = useState(null); //SteamId do usuario do banco, inicia como nulo
 
     //conferir se o usuario está logado
     useEffect(() => {
@@ -26,6 +28,7 @@ export function Profile(){
                     const resultado = await result.json()
                     setUserData(resultado.perfil);
                     setUserSteamId(resultado.perfil.SteamId);
+                    setUserPSName(resultado.perfil.PSname)
                     
                 }catch(err){
                     console.log("erro " + err)
@@ -46,7 +49,9 @@ export function Profile(){
             <br/>
 
             { /* exibindo dados da steam do usuário */ }
+
             {userSteamId ? <ProfileSteam steamId={userSteamId}/> : null}
+            {userPSName ? <ProfilePlaystation psName={userPSName}/> : null}
         </div>
     )
 }

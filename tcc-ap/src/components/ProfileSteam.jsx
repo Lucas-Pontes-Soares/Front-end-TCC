@@ -4,6 +4,11 @@ export function ProfileSteam(props){
     const [steamData, setSteamData] = useState([]);
     const [steamConquistas, setSteamConquistas] = useState([]);
 
+    // esse css é apenas para teste, separar em cada perfil em um canto
+    const estilo = {
+        float: "left",
+    };
+
     useEffect(() => {
         const authToken = localStorage.getItem("AuthToken")
         if (authToken) {
@@ -47,7 +52,7 @@ export function ProfileSteam(props){
     }, [props.steamId]) //cada vez que o steamId mudar, ele renderiza novamente
 
     return(
-        <div>
+        <div style={estilo}>
             <p>Dados Steam:</p>
             <img src={steamData.avatar} alt="avatar do usuário" />
             <p>{steamData.personaname}</p>
@@ -67,6 +72,7 @@ export function ProfileSteam(props){
                         <p>Bloqueadas: {item.gameAchivement.achivement?.filter((item) => item.achieved === 0).length}</p>
                     </div>
                     : <p>Este jogo não possui conquistas</p>}
+                    <br />
                </div>
             )): null}
            
