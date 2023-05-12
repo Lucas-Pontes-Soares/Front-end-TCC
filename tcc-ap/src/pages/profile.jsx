@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import {ProfileSteam} from '../components/ProfileSteam.jsx';
 import { ProfilePlaystation } from "../components/ProfilePlaystation.jsx";
+import { ProfileXbox } from "../components/ProfileXbox.jsx";
 
 export function Profile(){
     const [userData, setUserData] = useState([]); //dados usuario do banco
     const [userSteamId, setUserSteamId] = useState(null); //SteamId do usuario do banco, inicia como nulo
     const [userPSName, setUserPSName] = useState(null); //SteamId do usuario do banco, inicia como nulo
-
+    const [loginId, setLoginId] = useState(null);
     //conferir se o usuario está logado
     useEffect(() => {
         const userId = localStorage.getItem("userId")
@@ -25,10 +26,11 @@ export function Profile(){
                             token: authToken
                         },
                     })
-                    const resultado = await result.json()
+                    const resultado = await result.json();
                     setUserData(resultado.perfil);
                     setUserSteamId(resultado.perfil.SteamId);
-                    setUserPSName(resultado.perfil.PSname)
+                    setUserPSName(resultado.perfil.PSname);
+                    setLoginId(userId);
                     
                 }catch(err){
                     console.log("erro " + err)
@@ -49,9 +51,12 @@ export function Profile(){
             <br/>
 
             { /* exibindo dados da steam do usuário */ }
-
+         
+         {/*
             {userSteamId ? <ProfileSteam steamId={userSteamId}/> : null}
             {userPSName ? <ProfilePlaystation psName={userPSName}/> : null}
+       */ }
+            {loginId ? <ProfileXbox loginId={loginId}/> : null} 
         </div>
     )
 }

@@ -54,7 +54,7 @@ export function ProfileConfigurations(){
             nick: nick.value || userData.nick,
             email: email.value || userData.email,
             SteamId: steamId.value || userData.SteamId,
-            PSname: PSname.value || userData.PSname,
+            PSname: PSname.value || userData.PSname
         };
 
         try{
@@ -103,8 +103,9 @@ export function ProfileConfigurations(){
             <Input type="text" placeholder={userData.nick} name="nick" id="nick" />
             <Input type="email" placeholder={userData.email} name="email" id="email" />
             {/* <Input type="password" placeholder={userData.senha} name="" id="password" /> */}
-            <Input type="number" placeholder="Digite seu id da Steam" name="ps" id="steam"/>
-            <Input type="text" placeholder="Digite seu nome da PS" name="steam" id="ps"/>
+            <Input type="number" placeholder={userData.SteamId} name="steam" id="steam"/>
+            <Input type="text" placeholder={userData.PSname} name="ps" id="ps"/>
+            <Input type="text" placeholder={userData.XboxToken} name="xbox" id="xbox"/>
             <Button value="Atualizar" onclickFunction={atualizarDados}/>
             <Button value="Deletar" onclickFunction={deletarPerfil}/>
 
