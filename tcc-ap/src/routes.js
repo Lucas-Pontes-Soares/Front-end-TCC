@@ -6,6 +6,7 @@ import {Cadastro} from "./pages/cadastro.jsx";
 import {Home} from "./pages/home.jsx"
 import {Profile} from "./pages/profile.jsx";
 import {ProfileConfigurations} from "./pages/profileConfigurations";
+import {Entrar} from "./pages/entrar.jsx";
 
 export function Rotas() {
    return(
@@ -15,6 +16,7 @@ export function Rotas() {
                 <Route path="cadastro" element={<Cadastro />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="profileConfigurations" element={<ProfileConfigurations />} />
+                <Route path="entrar" element={<Entrar />} />
                 
         </Routes>
    )

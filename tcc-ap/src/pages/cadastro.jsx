@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-
 import { Input } from '../components/Input.jsx'
-import { Button } from '../components/Button.jsx'
+
 
 export function Cadastro() {
 
@@ -43,14 +42,16 @@ export function Cadastro() {
 
 
   return (
-    <div className='login'>
-      <h1>Pagina de Cadastro</h1>
-      <Input type="text" placeholder="Digite seu primeiro nome" name="first-name" id="first-name" />
-      <Input type="text" placeholder="Digite seu ultimo nome" name="last-name" id="last-name" />
-      <Input type="email" placeholder="Digite seu email" name="email" id="email" />
-      <Input type="password" placeholder="Digite sua senha" name="password" id="password" />
-      <Button value="Entrar" onclickFunction={fazerCadasro} />
-
+    <div className="form-container sign-up-container">
+      <div className="formulario">
+        <h1>Crie a sua conta</h1>
+        <span>ou use o seu email para entrar</span>
+        <Input type="text" placeholder="Digite seu primeiro nome" name="first-name" id="first-name" />
+        <Input type="text" placeholder="Digite seu ultimo nome" name="last-name" id="last-name" />
+        <Input type="email" placeholder="Digite seu email" name="email" id="email" />
+        <Input type="password" placeholder="Digite sua senha" name="password" id="password" />
+        <button id="signUp" onClick={fazerCadasro}>Criar</button>
+      </div>
     </div>
   )
 }

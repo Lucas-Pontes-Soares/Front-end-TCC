@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import {Input} from '../components/Input.jsx'
-import {Button} from '../components/Button.jsx'
-
 
 export function Login(){
-
-    async function fazerLogin () {
+    async function fazerLogin() {
         const emailDigitado = document.getElementById("email")
         const senhaDigitada = document.getElementById("password")
 
@@ -39,11 +36,14 @@ export function Login(){
       };
 
     return(
-        <div className='login'>
-            <h1>Pagina Login</h1>
-            <Input type="email" placeholder="Digite seu email" name="email" id="email"/>
-            <Input type="password" placeholder="Digite sua senha" name="password" id="password"/>
-            <Button value="Entrar" onclickFunction={fazerLogin}/>
+        <div className="form-container sign-in-container">
+          <div className="formulario">
+              <h1>Entre na sua conta</h1>
+              <span>ou crie uma conta</span>
+              <Input type="email" placeholder="Digite seu email" name="email" id="email"/>
+              <Input type="password" placeholder="Digite sua senha" name="password" id="password"/>
+              <button id="signIn" onClick={fazerLogin}>Entrar</button>
+          </div>
         </div>
     )
 }
