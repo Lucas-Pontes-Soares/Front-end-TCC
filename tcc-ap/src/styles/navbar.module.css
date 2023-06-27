@@ -1,0 +1,76 @@
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: rgba(34, 34, 43);
+    border-bottom: 2px solid #4B4B4B;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    text-align: center;
+    align-items: center;
+}
+
+.body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.logo {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+.home {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.jogadores {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+.perfil {
+    display: grid;
+    grid-column-start: 4;
+    grid-column-end: 4;
+}
+
+.config {
+    display: grid;
+    grid-column-start: 5;
+    grid-column-end: 5;
+}
+
+.selected {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 20px;
+    border-bottom: 5%;
+    height: 50px;
+    margin-top: 10%;
+    cursor: auto;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notSelected{
+    color: #B5ACAC;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.homeBackground {
+    background-image: url('../image/blur.png');
+    background-repeat: no-repeat;
+    background-position: center top 10px;
+    border-bottom: 5px solid #0DD5E1;
+    border-radius: 5px;
+    display: inline-block;
+    padding-bottom: 6px;
+    
+    /* Outras propriedades de estilo conforme necessário */
+  }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {ProfileSteam} from '../components/ProfileSteam.jsx';
 import { ProfilePlaystation } from "../components/ProfilePlaystation.jsx";
 import { ProfileXbox } from "../components/ProfileXbox.jsx";
+import { Navbar } from '../components/Navbar.jsx'
 
 export function Profile(){
     const [userData, setUserData] = useState([]); //dados usuario do banco
@@ -42,7 +43,8 @@ export function Profile(){
     }, [])
     
     return(
-        <div>
+        <div className='divPrincipal'>
+        <Navbar page="perfil"/>
              { /* exibindo dados do usuário do banco */ }
             <h1>Profile</h1>
             <p>{userData.nick}</p>

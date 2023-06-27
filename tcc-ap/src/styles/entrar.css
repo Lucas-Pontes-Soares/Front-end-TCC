@@ -5,6 +5,7 @@
 	box-sizing: border-box;
 	padding: 0px;
 	margin: 0px;
+	
 }
 
 .body {
@@ -16,6 +17,10 @@
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
+	padding: 0px;
+    margin: 0px;
+    background-color: #0D0E19;
+    height: 100vh;
 }
 
 .body h1 {

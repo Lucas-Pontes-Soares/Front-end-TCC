@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import {Input} from '../components/Input.jsx'
 import {Button} from '../components/Button.jsx'
 import { GetRequestByUserId } from '../components/GetRequestByUserId.jsx';
+import { Navbar } from '../components/Navbar.jsx'
 
 export function ProfileConfigurations(){
     const [userData, setUserData] = useState([]);
@@ -94,7 +95,8 @@ export function ProfileConfigurations(){
     }
     
     return(
-        <div>
+        <div className='divPrincipal'>
+             <Navbar page="config"/>
             <h1>Pagina Configurações do Perfil</h1>
 
             <h2>Seus dados do perfil</h2>
