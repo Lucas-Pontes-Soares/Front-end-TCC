@@ -20,7 +20,7 @@ export function Navbar(props) {
         </a>
         </div>
         <div className={styles.jogadores}>
-          <a href="http://localhost:3006/" className={currentPage === 'jogadores' ? `${styles.selected} ${styles.homeBackground}` : styles.notSelected}>
+          <a href="http://localhost:3006/jogadores" className={currentPage === 'jogadores' ? `${styles.selected} ${styles.homeBackground}` : styles.notSelected}>
             Jogadores
           </a>
         </div>
