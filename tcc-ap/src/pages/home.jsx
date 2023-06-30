@@ -4,6 +4,12 @@ import'../styles/home.css';
 
 export function Home(){
     useEffect(() => {
+        const authToken = localStorage.getItem("AuthToken")
+        if (authToken) {
+          console.log("Vc esta logado")
+        } else {
+          console.log("Realize seu login")
+        }
         // inicializar com o item-1 selecionado
         // o checked não funciona
         document.getElementById("item-1").checked = true;
@@ -11,7 +17,18 @@ export function Home(){
 
     return (
         <div className="divPrincipal">
-            <Navbar page="home"/>
+        {/* Se o usuario estiver logado, mostra a navbar com home com as outras paginas
+        se não estiver logado, mostra a navbar somente com home e entrar
+        */}
+        {localStorage.getItem("AuthToken") != null ? 
+        <>
+          <Navbar page="home"/>
+        </>
+        :
+        <>
+            <Navbar page="home" entrar='true'/>
+        </>
+        }
             <div className="carousel">
                 <div className="containerCarrousel">
                     <input type="radio" className="inputSlide" name="slider" onChange={()=>{}} id="item-1" />

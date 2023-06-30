@@ -26,6 +26,12 @@
     grid-column-end: 2;
 }
 
+.entrar{
+    display: grid;
+    grid-column-start: 4;
+    grid-column-end: 4;
+}
+
 .jogadores {
     display: grid;
     grid-column-start: 3;

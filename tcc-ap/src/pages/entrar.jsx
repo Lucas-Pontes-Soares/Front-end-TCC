@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import '../styles/entrar.css';
 import { Login } from '../pages/login';
 import { Cadastro } from '../pages/cadastro';
+import { Navbar } from '../components/Navbar.jsx'
 
 export function Entrar(){
     const [teste, setTeste] = useState(null);
@@ -22,6 +23,8 @@ export function Entrar(){
     }
 
     return (
+        <div className="divPrincipal">
+            <Navbar page="entrar" entrar='true'/>
             <div className="body">
                 <div className="container" id="container">
                         <Cadastro />
@@ -41,6 +44,7 @@ export function Entrar(){
                             </div>
                         </div>
                     </div>
+            </div>
             </div>
     )
 }
