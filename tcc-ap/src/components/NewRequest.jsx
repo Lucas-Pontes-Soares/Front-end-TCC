@@ -1,6 +1,7 @@
 import {Input} from './Input.jsx'
 import {Button} from './Button.jsx'
 import { useState, useEffect } from "react";
+import styles from '../styles/newRequest.module.css'
 
 export function NewRequest(){
     useEffect(() => {
@@ -59,15 +60,30 @@ export function NewRequest(){
 
     return (
         <div>
+             <div className={styles.playerRequest}>
+                <div className={styles.head}>
+                    <div className={styles.gameName}>
+                        <h1>Titulo: </h1>
+                        <Input type="text" placeholder="Digite o titulo da requisição" id="titulo"/> 
+                    </div>
+                </div>
+                <div className={styles.body}> 
+                    <h2>Jogo: </h2>
+                    <br></br>
+                    <Input type="text" placeholder="Digite o nome do jogo" id="jogo"/>
+                    <div className={styles.gameInfo}>
+                        Mensagem: <Input type="text" placeholder="Digite a mensagem" id="mensagem"/>
+                        Data <Input type="date" placeholder="Insira a data para jogar" id="dataJogar"/>
+                    </div>
+                    <div className={styles.requestInfo}>
+                        <label>Informe a quantidade de jogadores:</label> <br />
+                        <input type="range" className={styles.qtdPlayers} id="qtdPlayers" min="1" max="10"/>
+                        <p>Jogadores: <output id="value"></output></p>
+                        <button value="Criar" className={styles.btnCriar} onClick={criarRequesicao}>Criar</button>
+                    </div>
+                </div>
+               </div>
             <br />
-            <Input type="text" placeholder="Digite o titulo da requisição" id="titulo"/> 
-            <Input type="text" placeholder="Digite o nome do jogo" id="jogo"/>
-            <Input type="text" placeholder="Digite a mensagem" id="mensagem"/>
-            <label>Informe a quantidade de jogadores:</label> <br />
-            <input type="range" id="qtdPlayers" min="0" max="10"/>
-            <p>Jogadores: <output id="value"></output></p>
-            <Input type="date" placeholder="Insira a data para jogar" id="dataJogar"/>
-            <Button value="Criar" onclickFunction={criarRequesicao} />
         </div>
     )
 }

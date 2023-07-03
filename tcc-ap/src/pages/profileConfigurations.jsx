@@ -4,6 +4,8 @@ import {Input} from '../components/Input.jsx'
 import {Button} from '../components/Button.jsx'
 import { GetRequestByUserId } from '../components/GetRequestByUserId.jsx';
 import { Navbar } from '../components/Navbar.jsx'
+import styles from '../styles/profileConfig.module.css'
+import { Logout } from '../components/Logout.jsx';
 
 export function ProfileConfigurations(){
     const [userData, setUserData] = useState([]);
@@ -97,17 +99,38 @@ export function ProfileConfigurations(){
     return(
         <div className='divPrincipal'>
              <Navbar page="config"/>
-            <h1>Pagina Configurações do Perfil</h1>
-
-            <h2>Seus dados do perfil</h2>
-            <Input type="text" placeholder={userData.first_name} name="first_name" id="first_name" />
-            <Input type="text" placeholder={userData.last_name} name="last_name" id="last_name" />
-            <Input type="text" placeholder={userData.nick} name="nick" id="nick" />
-            <Input type="email" placeholder={userData.email} name="email" id="email" />
-            {/* <Input type="password" placeholder={userData.senha} name="" id="password" /> */}
-            <Input type="number" placeholder={userData.SteamId} name="steam" id="steam"/>
-            <Input type="text" placeholder={userData.PSname} name="ps" id="ps"/>
-            <Input type="text" placeholder={userData.XboxToken} name="xbox" id="xbox"/>
+            <div className={styles.dadosPerfil}>
+                <div className={styles.barraPerfil}>
+                    <div className={styles.seuPerfil}>
+                        <h3>Seu perfil:</h3>
+                    </div>
+                    <div className={styles.logout}>
+                        <Logout />
+                    </div>
+                </div>
+                Seu primeiro nome<Input className={styles.inputEntrada} type="text" placeholder={userData.first_name} name="first_name" id="first_name" />
+                Seu ultimo nome<Input className={styles.inputEntrada} type="text" placeholder={userData.last_name} name="last_name" id="last_name" />
+                Seu nick<Input className={styles.inputEntrada} type="text" placeholder={userData.nick} name="nick" id="nick" />
+                Seu email<Input className={styles.inputEntrada} type="email" placeholder={userData.email} name="email" id="email" />
+                {/* <Input type="password" placeholder={userData.senha} name="" id="password" /> */}
+            </div>
+            <div className={styles.conexao}>
+                <div className={styles.steam}> 
+                    <h2>Steam</h2>
+                    <img src= {require('../image/steam.png')} alt="steam" heigth="120px" width="140px"/>
+                    <Input className={styles.inputEntrada} type="number" placeholder={userData.SteamId} name="steam" id="steam"/>
+                </div>
+                <div className={styles.ps}>
+                    <h2>Playstation</h2>
+                    <img src= {require('../image/playstation.png')} alt="steam" heigth="120px" width="140px"/> 
+                    <Input className={styles.inputEntrada} type="text" placeholder={userData.PSname} name="ps" id="ps"/>
+                </div>
+                <div className={styles.xbox}>
+                    <h2>Xbox</h2> 
+                    <img src= {require('../image/xbox.png')} alt="steam" heigth="120px" width="140px"/>
+                    <Input className={styles.inputEntrada} type="text" placeholder={userData.XboxToken} name="xbox" id="xbox"/>
+                </div>
+            </div>
             <Button value="Atualizar" onclickFunction={atualizarDados}/>
             <Button value="Deletar" onclickFunction={deletarPerfil}/>
 

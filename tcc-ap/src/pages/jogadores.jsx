@@ -4,8 +4,10 @@ import { Logout } from '../components/Logout.jsx';
 import { useState, useEffect } from "react";
 import { Navbar } from '../components/Navbar.jsx'
 import '../styles/global.css'
+import styles from '../styles/jogadores.module.css'
 
 export function Jogadores() {
+  const [mostrarComponente, setMostrarComponente] = useState(false);
   useEffect(() => {
     const authToken = localStorage.getItem("AuthToken")
     if (authToken) {
@@ -15,13 +17,20 @@ export function Jogadores() {
     }
   })
 
+  const toggleComponente = () => {
+    setMostrarComponente(!mostrarComponente);
+  };
+
   return (
     <div className='divPrincipal'>
       <Navbar page="jogadores"/>
-      <h1>Hello</h1>
-      <NewRequest />
+      <div className={styles.central}>
+        <h2>Encontre aqui usuários para jogarem!</h2>
+        <button className={styles.newRequest} onClick={toggleComponente}>{mostrarComponente ? 'Cancelar Requisição' : '+ Nova Requisição'}</button>
+      </div>
+
+      {mostrarComponente && <NewRequest />}
       <GetRequest />
-      <Logout />
     </div>
   )
 }

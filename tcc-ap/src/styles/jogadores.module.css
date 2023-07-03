@@ -1,0 +1,18 @@
+.central {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 3%;
+}
+
+.newRequest {
+    background-color: #1BA864;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 200px;
+	border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}

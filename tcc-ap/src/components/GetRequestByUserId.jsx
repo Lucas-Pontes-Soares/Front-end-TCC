@@ -109,13 +109,13 @@ export function GetRequestByUserId() {
             {result.map((item) => (
                 <div key={item._id}>
                     <p>Próximo</p>
-                    <Input type="text" placeholder={item.title} id="titulo"/>
-                    <Input type="text" placeholder={item.game} id="jogo"/>
-                    <Input type="text" placeholder={item.message} id="mensagem"/>
+                    <input type="text" placeholder={item.title} id="titulo"/>
+                    <input type="text" placeholder={item.game} id="jogo"/>
+                    <input type="text" placeholder={item.message} id="mensagem"/>
                     <label>Informe a quantidade de jogadores:</label> <br />
                     <input type="range" onChange={mostrarQtdPlayers} id="qtdPlayers" min="0" max="10"/>
                     <p>Jogadores: <output id="value"></output></p>
-                    <Input type="date" placeholder="Insira a data para jogar" id="dataJogar"/>
+                    <input type="date" placeholder="Insira a data para jogar" id="dataJogar"/>
                     <button value="Atualizar" onClick={() => editRequest(item._id, item)}>Atualizar</button>
                     <button value="Deletar" onClick={() => deleteRequest(item._id, item)}>Deletar</button>
                 </div>
