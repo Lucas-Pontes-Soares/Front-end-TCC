@@ -42,7 +42,7 @@ export function GetRequest(){
                         <h1>{item.title}</h1>
                     </div>
                     <div className={styles.createdBy}>
-                        <p>{item.userId}</p>
+                        <p>{item.nick}</p>
                     </div>
                 </div>
                 <div className={styles.body}> 

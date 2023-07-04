@@ -40,6 +40,7 @@
 
 .qtdPlayers {
     padding: 0px;
+    margin: 0px;
 }
 
 .btnCriar {
@@ -52,4 +53,30 @@
     color: white;
     font-size: 20px;
     cursor: pointer;
+}
+
+.btnEdit{
+    background-color: #1BA864;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 200px;
+	border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20%;
+}
+
+.btnDelete {
+    background-color: #b11919;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 200px;
+	border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20%;
 }

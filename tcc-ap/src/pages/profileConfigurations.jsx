@@ -9,6 +9,7 @@ import { Logout } from '../components/Logout.jsx';
 
 export function ProfileConfigurations(){
     const [userData, setUserData] = useState([]);
+    const [mostrarComponente, setMostrarComponente] = useState(false);
 
     //conferir se o usuario está logado
     useEffect(() => {
@@ -95,6 +96,10 @@ export function ProfileConfigurations(){
             console.log(err)
         }
     }
+
+    const toggleComponente = () => {
+        setMostrarComponente(!mostrarComponente);
+      };
     
     return(
         <div className='divPrincipal'>
@@ -131,11 +136,14 @@ export function ProfileConfigurations(){
                     <Input className={styles.inputEntrada} type="text" placeholder={userData.XboxToken} name="xbox" id="xbox"/>
                 </div>
             </div>
-            <Button value="Atualizar" onclickFunction={atualizarDados}/>
-            <Button value="Deletar" onclickFunction={deletarPerfil}/>
+            <div className={styles.central}>
+                <button value="Atualizar" className={styles.btnEdit} onClick={atualizarDados}>Atualizar</button>
+                <button value="Deletar" className={styles.btnDelete} onClick={deletarPerfil}>Deletar</button>
 
-            <h2>Suas requisições</h2>
-            <GetRequestByUserId />
+                <h2>Suas requisições</h2>
+                <button className={styles.seeRequest} onClick={toggleComponente}>{mostrarComponente ? 'Fechar Requisições' : 'Visualizar Requisições'}</button>
+            </div>
+            {mostrarComponente && <GetRequestByUserId />}
         </div>
     )
 }

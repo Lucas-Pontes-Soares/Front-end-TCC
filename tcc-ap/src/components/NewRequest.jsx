@@ -1,9 +1,10 @@
 import {Input} from './Input.jsx'
-import {Button} from './Button.jsx'
 import { useState, useEffect } from "react";
 import styles from '../styles/newRequest.module.css'
 
 export function NewRequest(){
+    const [userNick, setUserNick] = useState([]);
+
     useEffect(() => {
         const authToken = localStorage.getItem("AuthToken")
         if (authToken) {
@@ -12,6 +13,26 @@ export function NewRequest(){
             console.log("Realize seu login")
         }
 
+        (async () => {
+            //rota para buscar o nome do usuario logado
+            try{
+              const userId = localStorage.getItem("userId")
+              const result = await fetch(`http://localhost:3000/user/getUser/${userId}`, {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      token: localStorage.getItem("AuthToken")
+                  },
+              })
+              const profile = await result.json();
+              setUserNick(profile.perfil.nick);
+          }catch(err){
+              console.log("erro " + err)
+          }
+          })();
+    }, [localStorage.getItem("userId")])
+
+    useEffect(() => {
         const valor = document.querySelector("#value")
         const input = document.querySelector("#qtdPlayers")
         valor.textContent = input.value
@@ -22,6 +43,8 @@ export function NewRequest(){
 
     async function criarRequesicao(){
         const userId = localStorage.getItem("userId")
+
+        const nick = userNick;
         const titulo = document.getElementById("titulo")
         const jogo = document.getElementById("jogo")
         const mensagem = document.getElementById("mensagem")
@@ -30,6 +53,7 @@ export function NewRequest(){
     
         const requestBody = {
           userId: userId,
+          nick: nick,
           title: titulo.value,
           game: jogo.value,
           message: mensagem.value,
@@ -55,7 +79,6 @@ export function NewRequest(){
         } catch(err){
             console.log(err)
         }
-
     }
 
     return (
