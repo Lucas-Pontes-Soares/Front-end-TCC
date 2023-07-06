@@ -1,0 +1,65 @@
+.user {
+    background-color: #1E1E27;
+    border: 1px solid #4B4B4B;
+    border-radius: 50px;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 20px;
+    margin-top: 3%;
+    height: 200px;
+}
+
+.qtdPlayers {
+    padding: 0px;
+}
+
+.plataformas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 3%;
+    margin-right: 3%;
+    grid-gap: 1%;
+    margin-top: 3%;
+}
+
+.perfilPlataformas {
+    text-align: center;
+    background-color: #1E1E27;
+    border: 1px solid #4B4B4B;
+    border-radius: 50px;
+    margin-right:2%;
+}
+
+.userProfile{
+    margin-top: 5%;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1%;
+    grid-gap: 1%;
+    margin-bottom: 2%;
+}
+
+.gameInfo {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.gameAchivement {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    text-align: left;
+}
+
+.platinado {
+    color: #07C86B;
+}

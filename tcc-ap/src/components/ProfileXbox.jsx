@@ -1,4 +1,5 @@
 import {useState, useEffect } from "react";
+import styles from '../styles/perfil.module.css'
 
 export function ProfileXbox(props){
     const [xboxData, setXboxData] = useState(null);
@@ -23,6 +24,7 @@ export function ProfileXbox(props){
                     },
                 })
                 const resultado = await result.json()
+                console.log(resultado);
                 setXboxData(resultado.profile.profileUsers[0])
             }catch(err){
                 console.log("erro " + err)
@@ -84,22 +86,28 @@ export function ProfileXbox(props){
 
     return(
         <div>
-            <p>Dados Xbox</p>
-            {xboxData ? <div>
-                <p>Dados Playstation: </p>
+            {xboxData ? 
+            <div className={styles.userProfile}>
+                <img src={xboxData.settings[1].value} alt="avatar do usuário" width="50px" />
                 <p>{xboxData.settings[0].value}</p>
             </div>: null}
-
-            <p>Conquistas:</p>
+            <p>Quantidade Jogos: {xboxConquistas?.length}</p>
             {/* ----- AVISO IMAGENS -----*/}
             {/* SE AS IMAGENS NÃO CARREGAREM, É PQ A API DO XBOX PASSOU O NÚMERO DE REQUISIÇÕES MAXIMAS*/}
             {/* FUTURAMENTE, ADICIONAR NAS IMAGENS NÃO CARREGADAS, COLOCANDO BOTÃO PARA ATUALIZAR SOMENTE A IMAGEM*/}
+
                 {xboxConquistas ?  xboxConquistas.map((item) => (
-                    <div key={item.titleId}>
-                        <p>{item.name}</p>
-                        {item.image ? <img src={item.image} alt="imagem do jogo" width="200px" height="150px"/> : null}
-                        <p>Pontos máximos:{item.maxGamerscore}</p>
-                        <p>Pontos atingidos: {item.currentGamerscore}, Conquistas: {item.earnedAchievements}</p>
+                    <div className={styles.games} key={item.titleId}>
+                        <div className={styles.gameInfo}>
+                            <p>{item.name}</p>
+                            {item.image ? <img src={item.image} alt="imagem do jogo" width="150px" height="100px"/> : null}
+                        </div>
+                        <div className={styles.gameAchivement}>
+                        {item.maxGamerscore === item.currentGamerscore ? <p className={styles.platinado}>Jogo Platinado</p> : null}
+                            <p>Progresso Gamescore: </p>
+                            <p>{item.currentGamerscore} de {item.maxGamerscore},  Conquistas: {item.earnedAchievements}</p>
+                            <input type="range" className={styles.qtdPlayers} disabled min="1" max={item.maxGamerscore} value={item.currentGamerscore}/>
+                        </div>
                     </div>
                 )):null}
             <br />

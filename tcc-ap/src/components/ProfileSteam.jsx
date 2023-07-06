@@ -1,4 +1,5 @@
 import {useState, useEffect } from "react";
+import styles from '../styles/perfil.module.css'
 
 export function ProfileSteam(props){
     const [steamData, setSteamData] = useState([]);
@@ -53,23 +54,30 @@ export function ProfileSteam(props){
 
     return(
         <div style={estilo}>
-            <p>Dados Steam:</p>
-            <img src={steamData.avatar} alt="avatar do usuário" />
-            <p>{steamData.personaname}</p>
-            <p>Conquistas</p>
+            <div className={styles.userProfile}>
+                <img src={steamData.avatar} alt="avatar do usuário" width="50px" />
+                <p>{steamData.personaname}</p>
+            </div>
+            <p>Quantidade Jogos: {steamConquistas.length}</p>
             {/* percorrendo os arrays dos jogos */}
             {/* condição ? verdadeiro : falso*/}
             {steamConquistas ?  steamConquistas.map((item) => (
-               <div key={item.gameInfo.appid}>
-                    <p>{item.gameInfo.title}</p>
-                    {/* se possuir imagem, exibi-la */}
-                    {item.gameInfo.image ? <img src={item.gameInfo.image} alt="imagem do jogo"/> : null}
+               <div className={styles.games}key={item.gameInfo.appid}>
+                    <div className={styles.gameInfo}>
+                        <p>{item.gameInfo.title}</p>
+                        {/* se possuir imagem, exibi-la */}
+                        {item.gameInfo.image ? <img src={item.gameInfo.image} alt="imagem do jogo" width="150px"/> : null}
+                    </div>
                     {/* exibir as conquistas, quantidade (length) e o filter para ver quantas bloqueadas ou n */}
                     {item.gameAchivement.achivement ? 
-                    <div>
-                        <p>Número de conquistas:{item.gameAchivement.achivement?.length}</p>
-                        <p>Desbloqueadas: {item.gameAchivement.achivement?.filter((item) => item.achieved === 1).length}</p>
-                        <p>Bloqueadas: {item.gameAchivement.achivement?.filter((item) => item.achieved === 0).length}</p>
+                    <div className={styles.gameAchivement}>
+                        {item.gameAchivement.achivement?.length === item.gameAchivement.achivement?.filter((item) => item.achieved === 1).length ? <p className={styles.platinado}>Jogo Platinado</p> : null}
+                        <p>Progesso conquistas: </p>
+                        <p>{item.gameAchivement.achivement?.filter((item) => item.achieved === 1).length} de {item.gameAchivement.achivement?.length}</p>
+                        {/* <p>Bloqueadas: {item.gameAchivement.achivement?.filter((item) => item.achieved === 0).length}</p> */}
+                        <input type="range" className={styles.qtdPlayers} disabled min="1" 
+                        max={item.gameAchivement.achivement?.length} 
+                        defaultValue= {item.gameAchivement.achivement?.filter((item) => item.achieved === 1).length}/>
                     </div>
                     : <p>Este jogo não possui conquistas</p>}
                     <br />

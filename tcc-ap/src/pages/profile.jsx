@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import {ProfileSteam} from '../components/ProfileSteam.jsx';
+import { ProfileSteam } from '../components/ProfileSteam.jsx';
 import { ProfilePlaystation } from "../components/ProfilePlaystation.jsx";
 import { ProfileXbox } from "../components/ProfileXbox.jsx";
 import { Navbar } from '../components/Navbar.jsx'
+import styles from '../styles/perfil.module.css'
 
-export function Profile(){
+export function Profile() {
     const [userData, setUserData] = useState([]); //dados usuario do banco
     const [userSteamId, setUserSteamId] = useState(null); //SteamId do usuario do banco, inicia como nulo
     const [userPSName, setUserPSName] = useState(null); //SteamId do usuario do banco, inicia como nulo
@@ -16,10 +17,10 @@ export function Profile(){
 
         if (authToken) {
             console.log("Vc esta logado");
-            
+
             (async () => {
                 //buscar dados do usuario
-                try{
+                try {
                     const result = await fetch(`http://localhost:3000/user/getUser/${userId}`, {
                         method: 'GET',
                         headers: {
@@ -32,8 +33,8 @@ export function Profile(){
                     setUserSteamId(resultado.perfil.SteamId);
                     setUserPSName(resultado.perfil.PSname);
                     setLoginId(userId);
-                    
-                }catch(err){
+
+                } catch (err) {
                     console.log("erro " + err)
                 }
             })();
@@ -41,24 +42,36 @@ export function Profile(){
             console.log("Realize seu login")
         }
     }, [])
-    
-    return(
-        <div className='divPrincipal'>
-        <Navbar page="perfil"/>
-             { /* exibindo dados do usuário do banco */ }
-            <h1>Profile</h1>
-            <p>{userData.nick}</p>
-            <p>{userData.first_name}</p>
-            <p>{userData.last_name}</p>
-            <br/>
 
-            { /* exibindo dados da steam do usuário */ }
-         
-         {/*
-            {userSteamId ? <ProfileSteam steamId={userSteamId}/> : null}
-            {userPSName ? <ProfilePlaystation psName={userPSName}/> : null}
-       */ }
-            {loginId ? <ProfileXbox loginId={loginId}/> : null} 
+    return (
+        <div className='divPrincipal'>
+            <Navbar page="perfil" />
+            { /* exibindo dados do usuário do banco */}
+            <div className={styles.user}>
+                <h1>{userData.nick}</h1>
+                <hr />
+                <br />
+                <h3>Nome: {userData.first_name}</h3>
+                <h3>Sobrenome: {userData.last_name}</h3>
+            </div>
+
+            <div className={styles.plataformas}>
+                <div className={styles.perfilPlataformas}>
+                    Steam
+                    <img src= {require('../image/steam.png')} alt="steam" heigth="80px" width="80px"/>
+                { userSteamId ? <ProfileSteam steamId={userSteamId}/> : null }
+                </div>
+                <div className={styles.perfilPlataformas}>
+                    Xbox
+                    <img src= {require('../image/xbox.png')} alt="steam" heigth="80px" width="80px"/>
+                { loginId ? <ProfileXbox loginId={loginId} /> : null }
+                </div>
+                <div className={styles.perfilPlataformas}>
+                    Playstation
+                    <img src= {require('../image/playstation.png')} alt="steam" heigth="80px" width="80px"/> 
+                {userPSName ? <ProfilePlaystation psName={userPSName}/> : null }
+                </div>
+            </div>
         </div>
     )
 }
