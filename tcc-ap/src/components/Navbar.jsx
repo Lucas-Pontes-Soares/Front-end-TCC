@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../styles/navbar.module.css';
 import blur from '../image/blur.png';
 
@@ -7,6 +7,7 @@ export function Navbar(props) {
   const [entrar, setEntrar] = useState(props.entrar);
 
   console.log(currentPage);
+
   return (
     <div className={styles.body}>
       <div className={styles.navbar} id="navbar">
@@ -39,7 +40,7 @@ export function Navbar(props) {
             </a>
           </div>
           <div className={styles.perfil}>
-            <a href="http://localhost:3006/profile" className={currentPage === 'perfil' ? `${styles.selected} ${styles.homeBackground}` : styles.notSelected}>
+            <a href={"http://localhost:3006/profile/" + localStorage.getItem("nick")} className={currentPage === 'perfil' ? `${styles.selected} ${styles.homeBackground}` : styles.notSelected}>
               Perfil
             </a>
           </div>

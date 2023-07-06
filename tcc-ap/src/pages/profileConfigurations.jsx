@@ -48,6 +48,7 @@ export function ProfileConfigurations(){
         const email = document.getElementById("email")
         const steamId = document.getElementById("steam")
         const PSname = document.getElementById("ps")
+        const xbox = document.getElementById("xbox")
 
         const userId = localStorage.getItem("userId")
         const authToken = localStorage.getItem("AuthToken")
@@ -58,7 +59,8 @@ export function ProfileConfigurations(){
             nick: nick.value || userData.nick,
             email: email.value || userData.email,
             SteamId: steamId.value || userData.SteamId,
-            PSname: PSname.value || userData.PSname
+            PSname: PSname.value || userData.PSname,
+            XboxToken: xbox.value || userData.XboxToken
         };
 
         try{

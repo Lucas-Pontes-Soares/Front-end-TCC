@@ -4,12 +4,19 @@ import { ProfilePlaystation } from "../components/ProfilePlaystation.jsx";
 import { ProfileXbox } from "../components/ProfileXbox.jsx";
 import { Navbar } from '../components/Navbar.jsx'
 import styles from '../styles/perfil.module.css'
+import { useParams } from 'react-router-dom';
 
 export function Profile() {
     const [userData, setUserData] = useState([]); //dados usuario do banco
     const [userSteamId, setUserSteamId] = useState(null); //SteamId do usuario do banco, inicia como nulo
-    const [userPSName, setUserPSName] = useState(null); //SteamId do usuario do banco, inicia como nulo
+    const [userPSName, setUserPSName] = useState(null); //userPSName do usuario do banco, inicia como nulo
+    const [userXboxToken, setUserXboxToken] = useState(null); //userXboxToken do usuario do banco, inicia como nulo
     const [loginId, setLoginId] = useState(null);
+
+    //coletando o nick passado na url
+    const params = useParams();
+    const { nickURL } = params;
+  
     //conferir se o usuario está logado
     useEffect(() => {
         const userId = localStorage.getItem("userId")
@@ -19,9 +26,10 @@ export function Profile() {
             console.log("Vc esta logado");
 
             (async () => {
+
                 //buscar dados do usuario
                 try {
-                    const result = await fetch(`http://localhost:3000/user/getUser/${userId}`, {
+                    const result = await fetch(`http://localhost:3000/user/getUserByNick/${nickURL}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -29,9 +37,11 @@ export function Profile() {
                         },
                     })
                     const resultado = await result.json();
+                    console.log(resultado);
                     setUserData(resultado.perfil);
                     setUserSteamId(resultado.perfil.SteamId);
                     setUserPSName(resultado.perfil.PSname);
+                    setUserXboxToken(resultado.perfil.XboxToken);
                     setLoginId(userId);
 
                 } catch (err) {
@@ -59,17 +69,17 @@ export function Profile() {
                 <div className={styles.perfilPlataformas}>
                     Steam
                     <img src= {require('../image/steam.png')} alt="steam" heigth="80px" width="80px"/>
-                { userSteamId ? <ProfileSteam steamId={userSteamId}/> : null }
+                { userSteamId ? <ProfileSteam steamId={userSteamId}/> : <p>Perfil não sincronizado!</p> }
                 </div>
                 <div className={styles.perfilPlataformas}>
                     Xbox
                     <img src= {require('../image/xbox.png')} alt="steam" heigth="80px" width="80px"/>
-                { loginId ? <ProfileXbox loginId={loginId} /> : null }
+                { userXboxToken ? <ProfileXbox loginId={userXboxToken} /> : <p>Perfil não sincronizado!</p> }
                 </div>
                 <div className={styles.perfilPlataformas}>
                     Playstation
                     <img src= {require('../image/playstation.png')} alt="steam" heigth="80px" width="80px"/> 
-                {userPSName ? <ProfilePlaystation psName={userPSName}/> : null }
+                { userPSName ? <ProfilePlaystation psName={userPSName}/> : <p>Perfil não sincronizado!</p> }
                 </div>
             </div>
         </div>

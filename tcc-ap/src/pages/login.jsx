@@ -26,6 +26,7 @@ export function Login(){
               console.log("entrou")
               localStorage.setItem("AuthToken", LoginJson.token)
               localStorage.setItem("userId", LoginJson.user._id)
+              localStorage.setItem("nick", LoginJson.user.nick)
             }else {
               console.log("email ou senha incorretos")
             }
