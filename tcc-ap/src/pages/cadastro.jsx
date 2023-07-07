@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Input } from '../components/Input.jsx'
-
+import { Alert } from "../components/Alert.jsx";
 
 export function Cadastro() {
+  const [response, setResponse] = useState(null);
 
-  async function fazerCadasro() {
+  async function fazerCadastro() {
     const firstname = document.getElementById("first-name")
     const lastname = document.getElementById("last-name")
     const nickDigitado = document.getElementById("nick")
@@ -28,6 +29,7 @@ export function Cadastro() {
         body: JSON.stringify(requestBody)
       })
       const resposta = await response.json()
+      setResponse(resposta)
       console.log(resposta)
 
       if (resposta.success === true) {
@@ -45,6 +47,7 @@ export function Cadastro() {
 
   return (
     <div className="form-container sign-up-container">
+        {response ? <Alert type={response.type} message={response.message} />: null}
       <div className="formulario">
         <h1>Crie a sua conta</h1>
         <span>ou use o seu email para entrar</span>
@@ -53,7 +56,7 @@ export function Cadastro() {
         <Input type="text" placeholder="Digite seu nick" name="nick" id="nick" />
         <Input type="email" placeholder="Digite seu email" name="email" id="email" />
         <Input type="password" placeholder="Digite sua senha" name="password" id="password" />
-        <button id="signUp" onClick={fazerCadasro}>Criar</button>
+        <button id="signUp" onClick={fazerCadastro}>Criar</button>
       </div>
     </div>
   )

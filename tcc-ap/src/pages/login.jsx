@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import {Input} from '../components/Input.jsx'
+import { Alert } from "../components/Alert.jsx";
 
 export function Login(){
+  const [response, setResponse] = useState(null);
+
     async function fazerLogin() {
         const emailDigitado = document.getElementById("email")
         const senhaDigitada = document.getElementById("password")
@@ -27,8 +30,10 @@ export function Login(){
               localStorage.setItem("AuthToken", LoginJson.token)
               localStorage.setItem("userId", LoginJson.user._id)
               localStorage.setItem("nick", LoginJson.user.nick)
+              setResponse(LoginJson)
             }else {
               console.log("email ou senha incorretos")
+              setResponse(LoginJson)
             }
 
         }catch(erro){
@@ -38,6 +43,7 @@ export function Login(){
 
     return(
         <div className="form-container sign-in-container">
+          {response ? <Alert type={response.type} message={response.message}/> : null}
           <div className="formulario">
               <h1>Entre na sua conta</h1>
               <span>ou crie uma conta</span>

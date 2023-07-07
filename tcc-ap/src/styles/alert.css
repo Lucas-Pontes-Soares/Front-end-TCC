@@ -1,0 +1,31 @@
+.alert {
+  padding: 20px;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 20px;
+  position: relative;
+}
+
+.alert.Erro {  background-color: #f44336;}
+.alert.Sucesso {background-color: #04AA6D;}
+.alert.Informação {background-color: #2196F3;}
+.alert.Perigo {background-color: #ff9800;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
