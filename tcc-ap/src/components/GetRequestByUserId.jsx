@@ -30,11 +30,10 @@ export function GetRequestByUserId() {
         );
         const resultadoJson = await resultado.json();
         console.log(resultadoJson)
-        if (!resultadoJson.type === "Erro") {
-          setResult(resultadoJson.Requisição);
-        }else {
+        if (resultadoJson.type === "Erro") {
           setResponse(resultadoJson)
-          console.log("erro")
+        }else {
+          setResult(resultadoJson.Requisição);
         }
       } catch (err) {
         console.log(err);
@@ -112,7 +111,7 @@ export function GetRequestByUserId() {
   return (
     <div>
       {response ? <Alert type={response.type} message={response.message}/> : null}
-      {result.map((item) => (
+      {result?.map((item) => (
         <div key={item._id}>
           <div className={styles.playerRequest}>
             <div className={styles.head}>
