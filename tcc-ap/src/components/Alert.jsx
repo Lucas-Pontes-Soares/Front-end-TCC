@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet';
 import '../styles/alert.css'
 import { useState, useEffect } from "react";
 
-export function Alert({type, message}) {
+export function Alert({type, message, link}) {
     useEffect(() => {
       var close = document.getElementsByClassName("closebtn");
       var i;
@@ -19,7 +19,7 @@ export function Alert({type, message}) {
   return (
       <div className={"alert " + type} >
           <span className="closebtn">&times;</span>  
-          <strong>{type}!</strong> {message}.
+          <strong>{type}!</strong> {message} {link? <a href={link} target="_blank">https://login.live.com/oauth20</a>: null}
       </div>
   )
 }

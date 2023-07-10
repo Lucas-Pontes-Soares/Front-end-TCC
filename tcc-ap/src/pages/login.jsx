@@ -6,8 +6,8 @@ export function Login(){
   const [response, setResponse] = useState(null);
 
     async function fazerLogin() {
-        const emailDigitado = document.getElementById("email")
-        const senhaDigitada = document.getElementById("password")
+        const emailDigitado = document.getElementById("loginEmail")
+        const senhaDigitada = document.getElementById("loginPassword")
 
         const requestBody = {
             email: emailDigitado.value,
@@ -30,6 +30,7 @@ export function Login(){
               localStorage.setItem("AuthToken", LoginJson.token)
               localStorage.setItem("userId", LoginJson.user._id)
               localStorage.setItem("nick", LoginJson.user.nick)
+              window.location.href = "http://localhost:3006/";
               setResponse(LoginJson)
             }else {
               console.log("email ou senha incorretos")
@@ -47,8 +48,8 @@ export function Login(){
           <div className="formulario">
               <h1>Entre na sua conta</h1>
               <span>ou crie uma conta</span>
-              <Input type="email" placeholder="Digite seu email" name="email" id="email"/>
-              <Input type="password" placeholder="Digite sua senha" name="password" id="password"/>
+              <Input type="email" placeholder="Digite seu email" name="email" id="loginEmail"/>
+              <Input type="password" placeholder="Digite sua senha" name="password" id="loginPassword"/>
               <button id="signIn" onClick={fazerLogin}>Entrar</button>
           </div>
         </div>

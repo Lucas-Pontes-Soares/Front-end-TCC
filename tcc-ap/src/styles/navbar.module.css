@@ -63,6 +63,18 @@
     margin-right: auto;
 }
 
+.configSelected {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 20px;
+    border-bottom: 5%;
+    height: 50px;
+    cursor: auto;
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .notSelected{
     color: #B5ACAC;
     text-decoration: none;
@@ -77,6 +89,5 @@
     border-radius: 5px;
     display: inline-block;
     padding-bottom: 6px;
-    
-    /* Outras propriedades de estilo conforme necessário */
-  }
+    position: relative;    
+}

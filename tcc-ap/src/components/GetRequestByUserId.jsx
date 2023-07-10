@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import styles from '../styles/newRequest.module.css'
+import { Alert } from "../components/Alert.jsx";
 
 export function GetRequestByUserId() {
-
   const [result, setResult] = useState([]);
-
+  const [response, setResponse] = useState(null);
   useEffect(() => {
     const authToken = localStorage.getItem("AuthToken")
     if (authToken) {
@@ -29,8 +29,12 @@ export function GetRequestByUserId() {
           }
         );
         const resultadoJson = await resultado.json();
-        if (resultadoJson) {
+        console.log(resultadoJson)
+        if (!resultadoJson.type === "Erro") {
           setResult(resultadoJson.Requisição);
+        }else {
+          setResponse(resultadoJson)
+          console.log("erro")
         }
       } catch (err) {
         console.log(err);
@@ -68,6 +72,7 @@ export function GetRequestByUserId() {
       const resultadoJson = await resultado.json()
       if (resultadoJson) {
         console.log(resultadoJson);
+        setResponse(resultadoJson);
       }
     } catch (err) {
       console.log(err)
@@ -87,6 +92,7 @@ export function GetRequestByUserId() {
       const resultadoJson = await resultado.json()
       if (resultadoJson) {
         console.log(resultadoJson);
+        setResponse(resultadoJson);
       }
     } catch (err) {
       console.log(err)
@@ -105,6 +111,7 @@ export function GetRequestByUserId() {
 
   return (
     <div>
+      {response ? <Alert type={response.type} message={response.message}/> : null}
       {result.map((item) => (
         <div key={item._id}>
           <div className={styles.playerRequest}>

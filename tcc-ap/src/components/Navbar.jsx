@@ -45,7 +45,7 @@ export function Navbar(props) {
             </a>
           </div>
           <div className={styles.config}>
-            <a href="http://localhost:3006/profileConfigurations" className={currentPage === 'config' ? `${styles.selected} ${styles.homeBackground}` : styles.notSelected}>
+            <a href="http://localhost:3006/profileConfigurations" className={currentPage === 'config' ? `${styles.configSelected} ${styles.homeBackground}` : styles.notSelected}>
               <img src={require('../image/iconConfig.png')} alt="Config" />
             </a>
           </div>

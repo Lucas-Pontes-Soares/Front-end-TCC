@@ -3,11 +3,10 @@
   color: white;
   opacity: 1;
   transition: opacity 0.6s;
-  margin-bottom: 15px;
+  border-radius: 20px;
   margin-left: 10%;
   margin-right: 10%;
-  border-radius: 20px;
-  position: relative;
+  margin-bottom: 5%;
 }
 
 .alert.Erro {  background-color: #f44336;}
@@ -28,4 +27,12 @@
 
 .closebtn:hover {
   color: black;
+}
+
+a {
+  color: white;
+}
+
+a:hover{
+  cursor: pointer;
 }

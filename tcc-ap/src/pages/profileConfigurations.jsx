@@ -6,10 +6,13 @@ import { GetRequestByUserId } from '../components/GetRequestByUserId.jsx';
 import { Navbar } from '../components/Navbar.jsx'
 import styles from '../styles/profileConfig.module.css'
 import { Logout } from '../components/Logout.jsx';
+import { Alert } from "../components/Alert.jsx";
 
 export function ProfileConfigurations(){
     const [userData, setUserData] = useState([]);
     const [mostrarComponente, setMostrarComponente] = useState(false);
+    const [response, setResponse] = useState(null);
+    const [responseXbox, setResponseXbox] = useState(null);
 
     //conferir se o usuario está logado
     useEffect(() => {
@@ -60,7 +63,7 @@ export function ProfileConfigurations(){
             email: email.value || userData.email,
             SteamId: steamId.value || userData.SteamId,
             PSname: PSname.value || userData.PSname,
-            XboxToken: xbox.value || userData.XboxToken
+            XboxToken: userId
         };
 
         try{
@@ -74,7 +77,8 @@ export function ProfileConfigurations(){
             })
             const resposta = await response.json()
             console.log(resposta)
-
+            setResponse(resposta)
+            localStorage.setItem("nick", nick.value)
         }catch(erro){
             console.log("erro "+ erro)
         }
@@ -102,10 +106,28 @@ export function ProfileConfigurations(){
     const toggleComponente = () => {
         setMostrarComponente(!mostrarComponente);
       };
+
+    async function authUpdate(){
+        try{
+            const response = await fetch(`http://localhost:3000/xbox/authUpdate/${localStorage.getItem("userId")}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            const resposta = await response.json()
+            console.log(resposta)
+            setResponseXbox(resposta)
+            atualizarDados()
+        }catch(erro){
+            console.log("erro "+ erro)
+        }
+    }
     
     return(
         <div className='divPrincipal'>
              <Navbar page="config"/>
+             {response ? <Alert type={response.type} message={response.message}/> : null}
             <div className={styles.dadosPerfil}>
                 <div className={styles.barraPerfil}>
                     <div className={styles.seuPerfil}>
@@ -121,26 +143,33 @@ export function ProfileConfigurations(){
                 Seu email<Input className={styles.inputEntrada} type="email" placeholder={userData.email} name="email" id="email" />
                 {/* <Input type="password" placeholder={userData.senha} name="" id="password" /> */}
             </div>
+            {responseXbox ? <Alert type={responseXbox.type} message={responseXbox.message} link={responseXbox.link}/> : null}
             <div className={styles.conexao}>
                 <div className={styles.steam}> 
                     <h2>Steam</h2>
                     <img src= {require('../image/steam.png')} alt="steam" heigth="120px" width="140px"/>
-                    <Input className={styles.inputEntrada} type="number" placeholder={userData.SteamId} name="steam" id="steam"/>
+                    <p>Id de usuario: </p>
+                    <Input className={styles.inputEntrada} type="text" placeholder={userData.SteamId} name="steam" id="steam"/>
+                    <button className={styles.btnEdit} onClick={atualizarDados}>Editar</button>
                 </div>
                 <div className={styles.ps}>
                     <h2>Playstation</h2>
                     <img src= {require('../image/playstation.png')} alt="steam" heigth="120px" width="140px"/> 
+                    <p>Nome de usuário: </p>
                     <Input className={styles.inputEntrada} type="text" placeholder={userData.PSname} name="ps" id="ps"/>
+                    <button className={styles.btnEdit} onClick={atualizarDados}>Editar</button>
                 </div>
                 <div className={styles.xbox}>
                     <h2>Xbox</h2> 
                     <img src= {require('../image/xbox.png')} alt="steam" heigth="120px" width="140px"/>
-                    <Input className={styles.inputEntrada} type="text" placeholder={userData.XboxToken} name="xbox" id="xbox"/>
+                    <p>Id de usuário: </p>
+                    <p>{userData.XboxToken}</p>
+                    <button className={styles.btnEdit} onClick={authUpdate}>Editar</button>
                 </div>
             </div>
             <div className={styles.central}>
-                <button value="Atualizar" className={styles.btnEdit} onClick={atualizarDados}>Atualizar</button>
-                <button value="Deletar" className={styles.btnDelete} onClick={deletarPerfil}>Deletar</button>
+                <button value="Atualizar" className={styles.btnEdit} onClick={atualizarDados}>Atualizar Perfil</button>
+                <button value="Deletar" className={styles.btnDelete} onClick={deletarPerfil}>Deletar Perfil</button>
 
                 <h2>Suas requisições</h2>
                 <button className={styles.seeRequest} onClick={toggleComponente}>{mostrarComponente ? 'Fechar Requisições' : 'Visualizar Requisições'}</button>
