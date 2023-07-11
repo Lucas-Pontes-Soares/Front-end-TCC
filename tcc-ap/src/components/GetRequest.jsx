@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from '../styles/playerRequest.module.css'
+import  { User } from "@phosphor-icons/react";
 
 export function GetRequest(){
     const [playersRequest, setPlayersRequest] = useState([]);
@@ -52,6 +53,7 @@ export function GetRequest(){
                         <p>{item.date}</p>
                     </div>
                     <div className={styles.requestInfo}>
+                        <p><User size={25} color="#FFFF" weight="fill" /> Quantidade de jogadores: </p>
                         <input type="range" className={styles.qtdPlayers} disabled min="1" max={item.countPlayers} defaultValue={item.playersFound}/>
                         <p>Encontrados {item.playersFound} jogadores de {item.countPlayers}</p>
                     </div>
