@@ -96,6 +96,28 @@ img {
     margin-right: auto; 
 }
 
+.foto {
+    margin: 0px;
+}
+
+.perfil {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.divFoto {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    justify-content: start;
+}
+
+.divDados {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
 .central {
     margin-left: auto;
     margin-right: auto;

@@ -7,6 +7,7 @@ import { Navbar } from '../components/Navbar.jsx'
 import styles from '../styles/profileConfig.module.css'
 import { Logout } from '../components/Logout.jsx';
 import { Alert } from "../components/Alert.jsx";
+import { UploadImage } from "../components/uploadImage.jsx";
 
 export function ProfileConfigurations(){
     const [userData, setUserData] = useState([]);
@@ -137,11 +138,19 @@ export function ProfileConfigurations(){
                         <Logout />
                     </div>
                 </div>
-                Seu primeiro nome<Input className={styles.inputEntrada} type="text" placeholder={userData.first_name} name="first_name" id="first_name" />
-                Seu ultimo nome<Input className={styles.inputEntrada} type="text" placeholder={userData.last_name} name="last_name" id="last_name" />
-                Seu nick<Input className={styles.inputEntrada} type="text" placeholder={userData.nick} name="nick" id="nick" />
-                Seu email<Input className={styles.inputEntrada} type="email" placeholder={userData.email} name="email" id="email" />
-                {/* <Input type="password" placeholder={userData.senha} name="" id="password" /> */}
+                <div className={styles.perfil}>
+                    <div className={styles.divFoto}>
+                        <img src={userData.image} className={styles.foto} alt="imagem" heigth="220px" width="240px"/> 
+                        < UploadImage />
+                    </div>
+                    <div className={styles.divDados}>
+                        Seu primeiro nome<Input className={styles.inputEntrada} type="text" placeholder={userData.first_name} name="first_name" id="first_name" />
+                        Seu ultimo nome<Input className={styles.inputEntrada} type="text" placeholder={userData.last_name} name="last_name" id="last_name" />
+                        Seu nick<Input className={styles.inputEntrada} type="text" placeholder={userData.nick} name="nick" id="nick" />
+                        Seu email<Input className={styles.inputEntrada} type="email" placeholder={userData.email} name="email" id="email" />
+                        {/* <Input type="password" placeholder={userData.senha} name="" id="password" /> */}
+                    </div>
+                </div>
             </div>
             {responseXbox ? <Alert type={responseXbox.type} message={responseXbox.message} link={responseXbox.link}/> : null}
             <div className={styles.conexao}>
