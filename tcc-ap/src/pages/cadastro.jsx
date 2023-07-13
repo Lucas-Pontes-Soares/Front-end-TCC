@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Input } from '../components/Input.jsx'
 import { Alert } from "../components/Alert.jsx";
+import { MD5 } from 'crypto-js';
 
 export function Cadastro() {
   const [response, setResponse] = useState(null);
@@ -11,13 +12,14 @@ export function Cadastro() {
     const nickDigitado = document.getElementById("nick")
     const emailDigitado = document.getElementById("email")
     const senhaDigitada = document.getElementById("password")
+    const senhaCriptografada = MD5(senhaDigitada).toString();
 
     const requestBody = {
       first_name: firstname.value,
       last_name: lastname.value,
       email: emailDigitado.value,
       nick: nickDigitado.value,
-      password: senhaDigitada.value,
+      password: senhaCriptografada,
       image: 'https://res.cloudinary.com/gplink/image/upload/v1689256447/FotoUsuario_knfgta.png'
       //imagem predifinida do perfil
     };

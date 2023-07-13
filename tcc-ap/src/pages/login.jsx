@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {Input} from '../components/Input.jsx'
 import { Alert } from "../components/Alert.jsx";
+import { MD5 } from 'crypto-js';
 
 export function Login(){
   const [response, setResponse] = useState(null);
@@ -8,10 +9,11 @@ export function Login(){
     async function fazerLogin() {
         const emailDigitado = document.getElementById("loginEmail")
         const senhaDigitada = document.getElementById("loginPassword")
+        const senhaCriptografada = MD5(senhaDigitada).toString();
 
         const requestBody = {
             email: emailDigitado.value,
-            password: senhaDigitada.value
+            password: senhaCriptografada
         };
       
         try{
