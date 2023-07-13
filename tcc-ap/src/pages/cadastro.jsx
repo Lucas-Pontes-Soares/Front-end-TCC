@@ -17,7 +17,9 @@ export function Cadastro() {
       last_name: lastname.value,
       email: emailDigitado.value,
       nick: nickDigitado.value,
-      password: senhaDigitada.value
+      password: senhaDigitada.value,
+      image: 'https://res.cloudinary.com/gplink/image/upload/v1689256447/FotoUsuario_knfgta.png'
+      //imagem predifinida do perfil
     };
 
     try {

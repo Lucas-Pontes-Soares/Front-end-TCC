@@ -58,11 +58,15 @@ export function Profile() {
             <Navbar page="perfil" />
             { /* exibindo dados do usuário do banco */}
             <div className={styles.user}>
-                <h1>{userData.nick}</h1>
-                <hr />
-                <br />
-                <h3>Nome: {userData.first_name}</h3>
-                <h3>Sobrenome: {userData.last_name}</h3>
+                <div className={styles.divFoto}>
+                    <img src={userData.image} className={styles.foto} alt="fotoPerfil" heigth="120px" width="140px"/> 
+                </div>
+                <div className={styles.divDados}>
+                    <h1>{userData.nick}</h1>
+                    <hr />
+                    <h3>Nome: {userData.first_name}</h3>
+                    <h3>Sobrenome: {userData.last_name}</h3>
+                </div>
             </div>
 
             <div className={styles.plataformas}>

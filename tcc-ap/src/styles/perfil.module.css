@@ -2,11 +2,31 @@
     background-color: #1E1E27;
     border: 1px solid #4B4B4B;
     border-radius: 50px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 20% 80%;
     margin-left: 3%;
     margin-right: 3%;
-    padding: 20px;
     margin-top: 3%;
-    height: 200px;
+    padding: 25px;
+}
+
+.divFoto {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    justify-content: center;
+}
+
+.divDados {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.divDados hr {
+    border: 1px solid #4B4B4B;
+    height: 0px;
 }
 
 .qtdPlayers {

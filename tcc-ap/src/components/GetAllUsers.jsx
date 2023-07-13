@@ -44,6 +44,9 @@ export function GetAllUsers(){
             {allUsers.type !== "Perigo" ? <p>Jogadores encontrados: </p>: null}
              {allUsers.users?.map((userData) => (
             <div className={styles.user} key={userData._id}>
+                <div className={styles.divFoto}>
+                    <img src={userData.image} className={styles.foto} alt="fotoPerfil" heigth="70px" width="90px"/> 
+                </div>
                 <div className={styles.head}>
                 <div className={styles.nick}>
                     <h3>{userData.nick}</h3>

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import styles from '../styles/uploadImage.module.css'
 
 export function UploadImage() {
     const cloudinaryRef = useRef();
@@ -46,8 +47,8 @@ async function updateImageUser(url){
 
   return (
     <div>
-        <button onClick={() => widgetRef.current.open()}>
-            Upload
+        <button className={styles.btnUpload}onClick={() => widgetRef.current.open()}>
+            Mudar foto
         </button>
     </div>
   );

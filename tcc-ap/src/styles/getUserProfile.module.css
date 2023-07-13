@@ -5,7 +5,7 @@
     padding: 2%;
     margin: 2%;
     text-align: left;
-    width: 35%;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -28,4 +28,9 @@
     grid-column-start: 2;
     grid-column-end: 2;
     justify-content: end;
+}
+
+.divFoto {
+    float: left;
+    margin-right: 5%;
 }
