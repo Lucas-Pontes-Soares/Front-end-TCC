@@ -5,6 +5,8 @@ import { Alert } from "../components/Alert.jsx";
 export function GetRequestByUserId() {
   const [result, setResult] = useState([]);
   const [response, setResponse] = useState(null);
+  const [response2, setResponse2] = useState(null);
+
   useEffect(() => {
     const authToken = localStorage.getItem("AuthToken")
     if (authToken) {
@@ -48,33 +50,51 @@ export function GetRequestByUserId() {
     const jogoEdit = document.getElementById(idRequest + "jogo").value || item.game;
     const mensagemEdit = document.getElementById(idRequest + "mensagem").value || item.message;
     const qtdPlayersEdit = document.getElementById(idRequest + "qtdPlayers").value || item.countPlayers;
-    const dataJogarEdit = document.getElementById(idRequest + "dataJogar").value || item.date;
+    const dataJogarEdit = document.getElementById(idRequest + "dataJogar").value || item.datetimeObject;
 
-    const requestBody = {
-      userId: userId,
-      title: tituloEdit,
-      game: jogoEdit,
-      message: mensagemEdit,
-      date: dataJogarEdit,
-      countPlayers: qtdPlayersEdit
-    };
+    const datetimeObject = new Date(dataJogarEdit);
+    const currentDate = new Date();
 
-    try {
-      const resultado = await fetch(`http://localhost:3000/playerrequest/updatePlayerRequest/${idRequest}`, {
-        method: "PUT",
-        headers: {
-          'Content-Type': 'application/json',
-          token: localStorage.getItem("AuthToken")
-        },
-        body: JSON.stringify(requestBody)
-      })
-      const resultadoJson = await resultado.json()
-      if (resultadoJson) {
-        console.log(resultadoJson);
-        setResponse(resultadoJson);
-      }
-    } catch (err) {
-      console.log(err)
+    // verificação dataatual e data digitada
+    if(datetimeObject > currentDate){
+        const tempoFormatado = datetimeObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        const dia = datetimeObject.getDate();
+        const mes = datetimeObject.getMonth() + 1;
+        const ano = datetimeObject.getFullYear();
+        const dataFormatada = `${dia}/${mes}/${ano}`;
+
+        const requestBody = {
+          userId: userId,
+          title: tituloEdit,
+          game: jogoEdit,
+          message: mensagemEdit,
+          datetimeObject: datetimeObject,
+          date: dataFormatada,
+          time: tempoFormatado,
+          countPlayers: qtdPlayersEdit
+        };
+  
+        try {
+          const resultado = await fetch(`http://localhost:3000/playerrequest/updatePlayerRequest/${idRequest}`, {
+            method: "PUT",
+            headers: {
+              'Content-Type': 'application/json',
+              token: localStorage.getItem("AuthToken")
+            },
+            body: JSON.stringify(requestBody)
+          })
+          const resultadoJson = await resultado.json()
+          if (resultadoJson) {
+            console.log(resultadoJson);
+            setResponse(resultadoJson);
+          }
+        } catch (err) {
+          console.log(err)
+        }
+    } else {
+        setResponse2("Data invalida!")
+        console.log("data invalida")
     }
   }
 
@@ -113,6 +133,7 @@ export function GetRequestByUserId() {
       {response ? <Alert type={response.type} message={response.message}/> : null}
       {result?.map((item) => (
         <div key={item._id}>
+            {response2 ? <Alert type="Erro" message={response2}/> : null}
           <div className={styles.playerRequest}>
             <div className={styles.head}>
               <div className={styles.gameName}>
@@ -127,7 +148,8 @@ export function GetRequestByUserId() {
               <input type="text" placeholder={item.game} id={item._id + "jogo"} />
               <div className={styles.gameInfo}>
                 Mensagem:   <input type="text" placeholder={item.message} id={item._id + "mensagem"} />
-                Data: <input type="date" placeholder="Insira a data para jogar" id={item._id + "dataJogar"} />
+                <p>Data marcada: {item.date} às {item.time}</p>
+                <input type="datetime-local" placeholder="Insira a data para jogar" id={item._id + "dataJogar"} />
               </div>
               <div className={styles.requestInfo}>
                 <label>Informe a quantidade de jogadores:</label>

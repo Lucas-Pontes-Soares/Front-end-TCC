@@ -50,7 +50,7 @@ export function GetRequest(){
                     <h2>{item.game}</h2>
                     <div className={styles.gameInfo}>
                         <p>{item.message}</p>
-                        <p>{item.date}</p>
+                        <p>Data marcada: {item.date} às {item.time}</p>
                     </div>
                     <div className={styles.requestInfo}>
                         <p><User size={25} color="#FFFF" weight="fill" /> Quantidade de jogadores: </p>

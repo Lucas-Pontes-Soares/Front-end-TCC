@@ -1,9 +1,11 @@
 import {Input} from './Input.jsx'
 import { useState, useEffect } from "react";
+import { Alert } from "../components/Alert.jsx";
 import styles from '../styles/newRequest.module.css'
 
 export function NewRequest(){
     const [userNick, setUserNick] = useState([]);
+    const [response, setResponse] = useState(null);
 
     useEffect(() => {
         const authToken = localStorage.getItem("AuthToken")
@@ -50,39 +52,58 @@ export function NewRequest(){
         const mensagem = document.getElementById("mensagem")
         const qtdPlayers = document.getElementById("qtdPlayers")
         const dataJogar = document.getElementById("dataJogar")
-    
-        const requestBody = {
-          userId: userId,
-          nick: nick,
-          title: titulo.value,
-          game: jogo.value,
-          message: mensagem.value,
-          date: dataJogar.value,
-          countPlayers: qtdPlayers.value,
-          playersFound: 0,
-          concluded: false
-        };
 
-        try{
-            const resultado = await fetch("http://localhost:3000/playerrequest/createPlayerRequest", {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  token: localStorage.getItem("AuthToken")
-                },
-                body: JSON.stringify(requestBody)
-            })
-            const resultadoJson = await resultado.json() 
-            if(resultadoJson){
-                console.log(resultadoJson);
-            }
-        } catch(err){
-            console.log(err)
+        const datetimeObject = new Date(dataJogar.value);
+        const currentDate = new Date();
+
+        // verificação dataatual e data digitada
+        if(datetimeObject > currentDate){
+            const tempoFormatado = datetimeObject.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            const dia = datetimeObject.getDate();
+            const mes = datetimeObject.getMonth() + 1;
+            const ano = datetimeObject.getFullYear();
+            const dataFormatada = `${dia}/${mes}/${ano}`;
+
+            const requestBody = {
+                userId: userId,
+                nick: nick,
+                title: titulo.value,
+                game: jogo.value,
+                message: mensagem.value,
+                datetimeObject: datetimeObject,
+                date: dataFormatada,
+                time: tempoFormatado,
+                countPlayers: qtdPlayers.value,
+                playersFound: 0,
+                concluded: false
+              };
+      
+              try{
+                  const resultado = await fetch("http://localhost:3000/playerrequest/createPlayerRequest", {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        token: localStorage.getItem("AuthToken")
+                      },
+                      body: JSON.stringify(requestBody)
+                  })
+                  const resultadoJson = await resultado.json() 
+                  if(resultadoJson){
+                      console.log(resultadoJson);
+                  }
+              } catch(err){
+                  console.log(err)
+              }
+        } else {
+            setResponse("Data invalida!")
+            console.log("data invalida")
         }
     }
 
     return (
         <div>
+            {response ? <Alert type="Erro" message={response}/> : null}
              <div className={styles.playerRequest}>
                 <div className={styles.head}>
                     <div className={styles.gameName}>
@@ -96,7 +117,7 @@ export function NewRequest(){
                     <Input type="text" placeholder="Digite o nome do jogo" id="jogo"/>
                     <div className={styles.gameInfo}>
                         Mensagem: <Input type="text" placeholder="Digite a mensagem" id="mensagem"/>
-                        Data <Input type="date" placeholder="Insira a data para jogar" id="dataJogar"/>
+                        Data <Input type="datetime-local" placeholder="Insira a data para jogar" id="dataJogar"/>
                     </div>
                     <div className={styles.requestInfo}>
                         <label>Informe a quantidade de jogadores:</label> <br />
