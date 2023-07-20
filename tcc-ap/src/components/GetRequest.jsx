@@ -33,6 +33,48 @@ export function GetRequest(){
         })();
     }, [localStorage.getItem("AuthToken")])
 
+    async function estouinteressado(nickDono, idRequest, playersFound, countPlayers, jogadoresInteressados){
+        const nick = localStorage.getItem("nick")
+
+        let jaTem = false;
+
+        for(var i = 0; i < jogadoresInteressados.length; i++){
+            if (jogadoresInteressados[i] === nick){
+                console.log("já tem")
+                jaTem = true;
+                break;
+            } 
+        }
+        //verificando: se esta cheio, já o nick ja esta registrado, se for o dono da mensagem
+        if (playersFound === countPlayers || jaTem === true || nickDono === nick){
+            console.log("Erro!")
+        }else {
+            //adicionando o novo nick no array
+            jogadoresInteressados.push(nick)
+
+            const requestBody = {
+                playersFound: playersFound + 1,
+                jogadoresInteressados: jogadoresInteressados
+            };
+
+            try {
+            const resultado = await fetch(`http://localhost:3000/playerrequest/updatePlayerRequest/${idRequest}`, {
+                method: "PUT",
+                headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem("AuthToken")
+                },
+                body: JSON.stringify(requestBody)
+            })
+            const resultadoJson = await resultado.json()
+            if (resultadoJson) {
+                console.log(resultadoJson);
+            }
+            } catch (err) {
+            console.log(err)
+            }
+        }
+    }
 
     return (
         <div>
@@ -56,6 +98,7 @@ export function GetRequest(){
                         <p><User size={25} color="#FFFF" weight="fill" /> Quantidade de jogadores: </p>
                         <input type="range" className={styles.qtdPlayers} disabled min="1" max={item.countPlayers} defaultValue={item.playersFound}/>
                         <p>Encontrados {item.playersFound} jogadores de {item.countPlayers}</p>
+                        <button onClick={() => estouinteressado(item.nick, item._id, item.playersFound, item.countPlayers, item.jogadoresInteressados)}>Estou interessado</button>
                     </div>
                 </div>
                </div>
