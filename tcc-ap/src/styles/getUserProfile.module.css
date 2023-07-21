@@ -5,7 +5,8 @@
     padding: 2%;
     margin: 2%;
     text-align: left;
-    width: 40%;
+    width: 60%;
+    min-width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -33,4 +34,41 @@
 .divFoto {
     float: left;
     margin-right: 5%;
+}
+
+ /* tela menor, fica tudo embaixo */
+ @media screen and (max-width: 720px) { 
+    .user {
+        padding: 4%;
+    }
+
+    .head {
+        display: grid;
+        grid-template-columns: 0;
+        grid-template-rows: 1fr 1fr;
+        border-bottom: 2px solid #4B4B4B;
+        margin-bottom: 2%;
+    }
+    
+    .nick {
+        display: grid;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+    
+    .link {
+        display: grid;
+        grid-row-start: 2;
+        grid-row-end: 2;
+        justify-content: start;
+    }
+    
+    .divFoto {
+        float: left;
+        margin-right: 5%;
+    }
+
+    .data {
+        margin-left: 30%;
+    }
 }

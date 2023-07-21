@@ -111,10 +111,9 @@ export function NewRequest(){
                         <Input type="text" placeholder="Digite o titulo da requisição" id="titulo"/> 
                     </div>
                 </div>
+                <h2>Jogo: </h2>
+                <Input type="text" placeholder="Digite o nome do jogo" id="jogo"/>
                 <div className={styles.body}> 
-                    <h2>Jogo: </h2>
-                    <br></br>
-                    <Input type="text" placeholder="Digite o nome do jogo" id="jogo"/>
                     <div className={styles.gameInfo}>
                         Mensagem: <Input type="text" placeholder="Digite a mensagem" id="mensagem"/>
                         Data <Input type="datetime-local" placeholder="Insira a data para jogar" id="dataJogar"/>

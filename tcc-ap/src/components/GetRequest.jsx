@@ -88,8 +88,8 @@ export function GetRequest(){
                         <p>{item.nick}</p>
                     </div>
                 </div>
+                <h2>{item.game}</h2>
                 <div className={styles.body}> 
-                    <h2>{item.game}</h2>
                     <div className={styles.gameInfo}>
                         <p>{item.message}</p>
                         <p>Data marcada: {item.date} às {item.time}</p>
@@ -98,7 +98,7 @@ export function GetRequest(){
                         <p><User size={25} color="#FFFF" weight="fill" /> Quantidade de jogadores: </p>
                         <input type="range" className={styles.qtdPlayers} disabled min="1" max={item.countPlayers} defaultValue={item.playersFound}/>
                         <p>Encontrados {item.playersFound} jogadores de {item.countPlayers}</p>
-                        <button onClick={() => estouinteressado(item.nick, item._id, item.playersFound, item.countPlayers, item.jogadoresInteressados)}>Estou interessado</button>
+                        <button className={styles.btnInteressado}onClick={() => estouinteressado(item.nick, item._id, item.playersFound, item.countPlayers, item.jogadoresInteressados)}>Estou interessado</button>
                     </div>
                 </div>
                </div>

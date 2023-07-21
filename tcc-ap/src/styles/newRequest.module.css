@@ -27,8 +27,6 @@
     display: grid;
     grid-column-start: 1;
     grid-column-end: 1;
-    padding-left: 5%;
-    padding-top: 2%;
 }
 
 .requestInfo {
@@ -80,3 +78,46 @@
     cursor: pointer;
     margin-left: 20%;
 }
+
+    /* tela menor, fica tudo embaixo */
+    @media screen and (max-width: 420px) {
+        .playerRequest {
+            padding: 4%;
+            height: 520px;
+        }
+
+        .head {
+            display: grid;
+            grid-template-columns: 0;
+            border-bottom: 2px solid #4B4B4B;
+            width: max-content;
+        }
+        
+        .gameName {
+            display: grid;
+            width: max-content;
+        }
+        
+        .body {
+            display: grid;
+            grid-template-columns: 0;
+            grid-template-rows: 1fr 1fr;
+            height: 220px;
+        }
+        
+        .gameInfo {
+            display: grid;
+            grid-row-start: 1;
+            grid-row-end: 1;
+            width: max-content;
+            height: min-content;
+        }
+        
+        .requestInfo {
+            display: grid;
+            grid-row-start: 2;
+            grid-row-end: 2;    
+            justify-content: start;
+            width: max-content;
+        }
+    }
