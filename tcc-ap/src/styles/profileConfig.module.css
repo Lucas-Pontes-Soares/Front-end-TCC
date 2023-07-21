@@ -102,7 +102,7 @@ img {
 
 .perfil {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 30% 10% 60%;
 }
 
 .divFoto {
@@ -114,8 +114,9 @@ img {
 
 .divDados {
     display: grid;
-    grid-column-start: 2;
-    grid-column-end: 2;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    justify-content: start;
 }
 
 .central {
@@ -161,4 +162,119 @@ img {
     font-size: 20px;
     cursor: pointer;
     margin-right: 5%;
+}
+
+@media screen and (max-width: 750px) {
+    .perfil {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .foto {
+        width: 200px;
+        height: 180px;
+    }
+
+    .conexao {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        height: 300px;
+        grid-gap: 8px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .btnEdit{
+        width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Apenas as conexões ficarao em baixo em 700px */
+@media screen and (max-width: 700px) {
+    .conexao {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        height: max-content;
+        grid-gap: 50px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .steam {
+        display: grid;
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 1;
+        background-color: #1E1E27;
+        border: 1px solid #4B4B4B;
+        border-radius: 50px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    
+    .ps {
+        display: grid;
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        grid-row-end: 2;
+        background-color: #1E1E27;
+        border: 1px solid #4B4B4B;
+        border-radius: 50px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    
+    .xbox {
+        display: grid;
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 3;
+        grid-row-end: 3;
+        background-color: #1E1E27;
+        border: 1px solid #4B4B4B;
+        border-radius: 50px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .perfil {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 7%;
+    }
+
+    .divFoto {
+        display: grid;
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 1;
+        justify-content: center;
+    }
+    
+    .divDados {
+        display: grid;
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 3;
+        grid-row-end: 3;
+        justify-content: center;
+    }
+    
+    .foto {
+        width: 140px;
+        height: 120px;
+    }
 }

@@ -6,6 +6,14 @@
     margin: 3%;
 }
 
+.playerRequestUpdate {
+    background-color: #1E1E27;
+    border: 2px solid #4B4B4B;
+    border-radius: 50px;
+    padding: 3%;
+    margin: 3%;
+}
+
 .head {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -84,6 +92,11 @@
         .playerRequest {
             padding: 4%;
             height: 520px;
+        }
+
+        .playerRequestUpdate {
+            padding: 4%;
+            height: max-content;
         }
 
         .head {

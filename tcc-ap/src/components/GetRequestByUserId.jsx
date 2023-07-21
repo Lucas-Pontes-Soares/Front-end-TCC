@@ -134,7 +134,7 @@ export function GetRequestByUserId() {
       {result?.map((item) => (
         <div key={item._id}>
             {response2 ? <Alert type="Erro" message={response2}/> : null}
-          <div className={styles.playerRequest}>
+          <div className={styles.playerRequestUpdate}>
             <div className={styles.head}>
               <div className={styles.gameName}>
                 <h1>Titulo: </h1>
@@ -142,10 +142,9 @@ export function GetRequestByUserId() {
                 <input type="text" placeholder={item.title} id={item._id + "titulo"} />
               </div>
             </div>
+            <h2>Jogo: </h2>
+            <input type="text" placeholder={item.game} id={item._id + "jogo"} />
             <div className={styles.body}>
-              <h2>Jogo: </h2>
-              <br></br>
-              <input type="text" placeholder={item.game} id={item._id + "jogo"} />
               <div className={styles.gameInfo}>
                 Mensagem:   <input type="text" placeholder={item.message} id={item._id + "mensagem"} />
                 <p>Data marcada: {item.date} às {item.time}</p>
