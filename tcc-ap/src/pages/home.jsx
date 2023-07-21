@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navbar } from '../components/Navbar.jsx'
+import { NavbarResponsive } from "../components/NavbarResponsive.jsx";
 import'../styles/home.css';
 
 export function Home(){
@@ -22,11 +22,11 @@ export function Home(){
         */}
         {localStorage.getItem("AuthToken") != null ? 
         <>
-          <Navbar page="home"/>
+          <NavbarResponsive page="home"/>
         </>
         :
         <>
-            <Navbar page="home" entrar='true'/>
+            <NavbarResponsive page="home" entrar='true'/>
         </>
         }
             <div className="carousel">

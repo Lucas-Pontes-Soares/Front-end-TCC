@@ -9,11 +9,6 @@
     align-items: center;
 }
 
-.body {
-    margin: 0px;
-    padding: 0px;
-}
-
 .logo {
     display: grid;
     grid-column-start: 1;

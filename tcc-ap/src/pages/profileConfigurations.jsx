@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 
 import {Input} from '../components/Input.jsx'
-import {Button} from '../components/Button.jsx'
 import { GetRequestByUserId } from '../components/GetRequestByUserId.jsx';
-import { Navbar } from '../components/Navbar.jsx'
+import { NavbarResponsive } from '../components/NavbarResponsive.jsx'
 import styles from '../styles/profileConfig.module.css'
 import { Logout } from '../components/Logout.jsx';
 import { Alert } from "../components/Alert.jsx";
@@ -127,7 +126,7 @@ export function ProfileConfigurations(){
     
     return(
         <div className='divPrincipal'>
-             <Navbar page="config"/>
+             <NavbarResponsive page="config"/>
              {response ? <Alert type={response.type} message={response.message}/> : null}
             <div className={styles.dadosPerfil}>
                 <div className={styles.barraPerfil}>

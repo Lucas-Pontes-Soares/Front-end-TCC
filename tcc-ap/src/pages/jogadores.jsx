@@ -1,7 +1,7 @@
 import { NewRequest } from '../components/NewRequest.jsx';
 import { GetRequest } from '../components/GetRequest.jsx';
 import { useState, useEffect } from "react";
-import { Navbar } from '../components/Navbar.jsx'
+import { NavbarResponsive } from "../components/NavbarResponsive.jsx";
 import { GetAllUsers} from '../components/GetAllUsers.jsx'
 import  { MagnifyingGlass } from "@phosphor-icons/react";
 import '../styles/global.css'
@@ -30,7 +30,7 @@ export function Jogadores() {
 
   return (
     <div className='divPrincipal'>
-      <Navbar page="jogadores"/>
+      <NavbarResponsive page="jogadores"/>
       <div className={styles.central}>
         <h2>Encontre aqui usuários para jogarem!</h2>
         <button className={styles.newRequest} onClick={componenteBuscarJogador}><MagnifyingGlass /> {buscarJogador ? 'Cancelar Buscar' :  'Buscar Jogador'}</button>

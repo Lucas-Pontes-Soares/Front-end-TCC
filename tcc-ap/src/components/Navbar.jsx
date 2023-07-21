@@ -9,7 +9,6 @@ export function Navbar(props) {
   console.log(currentPage);
 
   return (
-    <div className={styles.body}>
       <div className={styles.navbar} id="navbar">
         <div id="logo" className={styles.logo}>
           <a href="">
@@ -52,6 +51,5 @@ export function Navbar(props) {
         </>
       }
       </div>
-    </div>
   );
 }

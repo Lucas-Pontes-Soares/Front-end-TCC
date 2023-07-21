@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ProfileSteam } from '../components/ProfileSteam.jsx';
 import { ProfilePlaystation } from "../components/ProfilePlaystation.jsx";
 import { ProfileXbox } from "../components/ProfileXbox.jsx";
-import { Navbar } from '../components/Navbar.jsx'
+import { NavbarResponsive } from "../components/NavbarResponsive.jsx";
 import styles from '../styles/perfil.module.css'
 import { useParams } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ export function Profile() {
 
     return (
         <div className='divPrincipal'>
-            <Navbar page="perfil" />
+            <NavbarResponsive page="perfil" />
             { /* exibindo dados do usuário do banco */}
             <div className={styles.user}>
                 <div className={styles.divFoto}>
