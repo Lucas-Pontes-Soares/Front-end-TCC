@@ -19,7 +19,6 @@
   height: 400px;
   left: 0;
   right: 0;
-  margin: auto;
   transition: transform .4s ease;
   cursor: pointer;
 }
@@ -34,6 +33,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding-left: 10%;
 }
 
 .slides {
@@ -69,7 +69,7 @@
 }
 
 .plataformas {
-  margin-top: 28%;
+  margin-top: max(300px, 28%);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   text-align: center;
@@ -98,3 +98,107 @@
   justify-content: center;
 }
 
+@media screen and (max-width: 1000px) {
+  .containerCarrousel {
+    padding-left: 20%;
+  }
+
+  .carousel img {
+    width: 400px;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .slide {
+    width: 450px; 
+    height: 250px;
+  }
+  
+}
+
+@media screen and (max-width: 650px) {
+  .plataformas {
+    margin-top: max(220px, 28%);
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 20px;
+  }
+
+  #divSteam {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    justify-content: center;
+  }
+  
+  #divXbox{
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    justify-content: center;
+  }
+  
+  #divPS{
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    justify-content: center;
+  }
+
+
+  .imagemLogoPlataforma {
+    width: 120px;
+    height: 40px;
+  }
+
+  .containerCarrousel {
+    padding-left: 5%;
+  }
+
+  .carousel img {
+    width: 350px;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 0px;
+  }
+
+  .carousel label {
+    padding: 0px;
+    width: 300px;
+  }
+
+  .slide {
+    width: 350px; 
+    height: 200px;
+  }
+
+  #item-1:checked ~ .slides #song-3, #item-2:checked ~ .slides #song-1, #item-3:checked ~ .slides #song-2 {
+    transform: translatex(-40%) scale(.8);
+    opacity: .4;
+    z-index: 0;
+  }
+  
+  #item-1:checked ~ .slides #song-2, #item-2:checked ~ .slides #song-3, #item-3:checked ~ .slides #song-1 {
+    transform: translatex(40%) scale(.8);
+    opacity: .4;
+    z-index: 0;
+  }
+  
+  #item-1:checked ~ .slides #song-1, #item-2:checked ~ .slides #song-2, #item-3:checked ~ .slides #song-3 {
+    transform: translatex(0) scale(.9);
+    opacity: 1;
+    z-index: 1;
+  }
+}
