@@ -44,10 +44,10 @@ export function NavbarResponsive(props) {
                 <a href="http://localhost:3006/profileConfigurations" id="config" className={currentPage === 'config' ? `selected homeBackground` : 'notSelected'}>
                     <img src={require('../image/iconConfig.png')} alt="Config" />
                 </a>
-                <a className="icon" onClick={myFunction}>
-                    <i className="fa fa-bars">&#9776;</i>
-                </a>
             </>}
+            <a className="icon" onClick={myFunction}>
+                <i className="fa fa-bars">&#9776;</i>
+            </a>
     </div>
   );
 }
