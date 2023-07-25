@@ -53,7 +53,7 @@ export function ProfileSteam(props){
     }, [props.steamId]) //cada vez que o steamId mudar, ele renderiza novamente
 
     return(
-        <div style={estilo}>
+        <div>
             <div className={styles.userProfile}>
                 <img src={steamData.avatar} alt="avatar do usuário" width="50px" />
                 <p>{steamData.personaname}</p>
@@ -66,7 +66,7 @@ export function ProfileSteam(props){
                     <div className={styles.gameInfo}>
                         <p>{item.gameInfo.title}</p>
                         {/* se possuir imagem, exibi-la */}
-                        {item.gameInfo.image ? <img src={item.gameInfo.image} alt="imagem do jogo" width="150px"/> : null}
+                        {item.gameInfo.image ? <img src={item.gameInfo.image} alt="imagem do jogo" width="150px"/> : <img src={require('../image/no_imageGame.png')} alt="imagem do jogo" width="150px"/>}
                     </div>
                     {/* exibir as conquistas, quantidade (length) e o filter para ver quantas bloqueadas ou n */}
                     {item.gameAchivement.achivement ? 
@@ -79,7 +79,10 @@ export function ProfileSteam(props){
                         max={item.gameAchivement.achivement?.length} 
                         defaultValue= {item.gameAchivement.achivement?.filter((item) => item.achieved === 1).length}/>
                     </div>
-                    : <p>Este jogo não possui conquistas</p>}
+                    :   <div className={styles.gameAchivement}>
+                            <p>Este jogo não possui conquistas</p>
+                        </div>
+                        }
                     <br />
                </div>
             )): null}

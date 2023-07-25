@@ -100,7 +100,7 @@ export function ProfileXbox(props){
                     <div className={styles.games} key={item.titleId}>
                         <div className={styles.gameInfo}>
                             <p>{item.name}</p>
-                            {item.image ? <img src={item.image} alt="imagem do jogo" width="150px" height="100px"/> : null}
+                            {item.image ? <img src={item.image} alt="imagem do jogo" width="150px" height="100px"/> : <img src={require('../image/no_imageGame.png')} alt="imagem do jogo" width="150px"/>}
                         </div>
                         <div className={styles.gameAchivement}>
                         {item.maxGamerscore === item.currentGamerscore ? <p className={styles.platinado}>Jogo Platinado</p> : null}

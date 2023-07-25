@@ -52,7 +52,7 @@ export function ProfilePlaystation(props){
     return(
         <div>
             {psData ? <div className={styles.userProfile}>
-                {psData.avatarUrls[0].avatarUrl ?<img src={psData.avatarUrls[0].avatarUrl} width="50px" alt="Avatar do perfil"/>: null }
+                {psData.avatarUrls[0].avatarUrl ?<img src={psData.avatarUrls[0].avatarUrl} width="50px" alt="Avatar do perfil"/>: <img src={require('../image/no_imageGame.png')} alt="imagem do jogo" width="150px"/> }
                 <p>{psData.onlineId}</p>
             </div>: null}
 
@@ -67,10 +67,20 @@ export function ProfilePlaystation(props){
                     <div className={styles.gameAchivement}>
                         <p>Progresso trofeus: </p>
                         <input type="range" className={styles.qtdPlayers} disabled min="1" value={item.progress}/>
-                        <p>Bronze:  {item.earnedTrophies.bronze} de {item.definedTrophies.bronze}</p>
-                        <p>Prata: {item.earnedTrophies.silver} de {item.definedTrophies.silver}</p>
-                        <p>Ouro: {item.earnedTrophies.gold} de {item.definedTrophies.gold}</p>
-                        <p>Platina: {item.earnedTrophies.platinum} de {item.definedTrophies.platinum}</p>
+                        <div className={styles.trofeus}>
+                            <div className={styles.trofeus1}>
+                            Bronze:  {item.earnedTrophies.bronze} de {item.definedTrophies.bronze}
+                            </div>
+                            <div className={styles.trofeus2}>
+                            Prata: {item.earnedTrophies.silver} de {item.definedTrophies.silver}
+                            </div>
+                            <div className={styles.trofeus3}>
+                            Ouro: {item.earnedTrophies.gold} de {item.definedTrophies.gold}
+                            </div>
+                            <div className={styles.trofeus4}>
+                            Platina: {item.earnedTrophies.platinum} de {item.definedTrophies.platinum}
+                            </div>
+                        </div>
                     </div>
                 </div>
             )):null}

@@ -64,8 +64,7 @@ export function Profile() {
                 <div className={styles.divDados}>
                     <h1>{userData.nick}</h1>
                     <hr />
-                    <h3>Nome: {userData.first_name}</h3>
-                    <h3>Sobrenome: {userData.last_name}</h3>
+                    <p>Nome: {userData.first_name}, Sobrenome: {userData.last_name}</p>
                 </div>
             </div>
 
