@@ -55,16 +55,30 @@ export function ProfileConfigurations(){
 
         const userId = localStorage.getItem("userId")
         const authToken = localStorage.getItem("AuthToken")
+        let requestBody = [];
 
-        const requestBody = {
-            first_name: first_name.value || userData.first_name,
-            last_name: last_name.value || userData.last_name,
-            nick: nick.value || userData.nick,
-            email: email.value || userData.email,
-            SteamId: steamId.value || userData.SteamId,
-            PSname: PSname.value || userData.PSname,
-            XboxToken: userId
-        };
+        //caso não tenha sincronizado o xbox
+        if(xbox.value !== ""){
+            requestBody = {
+                first_name: first_name.value || userData.first_name,
+                last_name: last_name.value || userData.last_name,
+                nick: nick.value || userData.nick,
+                email: email.value || userData.email,
+                SteamId: steamId.value || userData.SteamId,
+                PSname: PSname.value || userData.PSname,
+                XboxToken: userId
+            };
+        } else {
+            requestBody = {
+                first_name: first_name.value || userData.first_name,
+                last_name: last_name.value || userData.last_name,
+                nick: nick.value || userData.nick,
+                email: email.value || userData.email,
+                SteamId: steamId.value || userData.SteamId,
+                PSname: PSname.value || userData.PSname,
+            };
+        }
+
 
         try{
             const response = await fetch(`http://localhost:3000/user/updateUser/${userId}`, {
@@ -171,7 +185,7 @@ export function ProfileConfigurations(){
                     <h2>Xbox</h2> 
                     <img src= {require('../image/xbox.png')} alt="steam" heigth="120px" width="140px"/>
                     <p>Id de usuário: </p>
-                    <p>{userData.XboxToken}</p>
+                    <input className={styles.inputEntrada} type="text" disabled placeholder={userData.XboxToken} name="xbox" id="xbox"/>
                     <button className={styles.btnEdit} onClick={authUpdate}>Editar</button>
                 </div>
             </div>
