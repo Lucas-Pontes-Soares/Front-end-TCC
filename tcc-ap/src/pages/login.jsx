@@ -17,7 +17,7 @@ export function Login(){
         };
       
         try{
-            const LoginResponse = await fetch('http://localhost:3000/user/loginuser', {
+            const LoginResponse = await fetch('https://gplink-backend.onrender.com/user/loginuser', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
