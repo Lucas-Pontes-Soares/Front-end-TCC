@@ -23,7 +23,7 @@ export function Cadastro() {
     };
 
     try {
-      const response = await fetch(`${process.env.URL-Backend}/user/createuser`, {
+      const response = await fetch(`${process.env.REACT_APP_URLBackend}/user/createuser`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

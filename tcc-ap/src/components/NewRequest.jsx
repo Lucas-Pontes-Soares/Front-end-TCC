@@ -19,7 +19,7 @@ export function NewRequest(){
             //rota para buscar o nome do usuario logado
             try{
               const userId = localStorage.getItem("userId")
-              const result = await fetch(`${process.env.URL-Backend}/user/getUser/${userId}`, {
+              const result = await fetch(`${process.env.REACT_APP_URLBackend}/user/getUser/${userId}`, {
                   method: 'GET',
                   headers: {
                       'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export function NewRequest(){
               };
       
               try{
-                  const resultado = await fetch(`${process.env.URL-Backend}/playerrequest/createPlayerRequest`, {
+                  const resultado = await fetch(`${process.env.REACT_APP_URLBackend}/playerrequest/createPlayerRequest`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',

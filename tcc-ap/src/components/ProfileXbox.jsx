@@ -16,7 +16,7 @@ export function ProfileXbox(props){
         (async () => {
             //rota para buscar o perfil do jogador
             try {
-                const result = await fetch(`${process.env.URL-Backend}/xbox/findGetUserProfile/${props.loginId}`, {
+                const result = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/findGetUserProfile/${props.loginId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export function ProfileXbox(props){
 
             //função para consultar a api de buscar as conquistas
             async function buscarConquistas(arrayJogos, limite){
-                const result = await fetch(`${process.env.URL-Backend}/xbox/findGetUserAchievements/${props.loginId}`, {
+                const result = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/findGetUserAchievements/${props.loginId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export function ProfileXbox(props){
             try {
                 let limite = 0;
 
-                const result = await fetch(`${process.env.URL-Backend}/xbox/findGetUserAchievements/${props.loginId}`, {
+                const result = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/findGetUserAchievements/${props.loginId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

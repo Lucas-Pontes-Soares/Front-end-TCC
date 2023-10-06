@@ -29,7 +29,7 @@ export function Profile() {
 
                 //buscar dados do usuario
                 try {
-                    const result = await fetch(`${process.env.URL-Backend}/user/getUserByNick/${nickURL}`, {
+                    const result = await fetch(`${process.env.REACT_APP_URLBackend}/user/getUserByNick/${nickURL}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

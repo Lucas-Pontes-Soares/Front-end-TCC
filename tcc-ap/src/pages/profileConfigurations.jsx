@@ -25,7 +25,7 @@ export function ProfileConfigurations(){
             (async () => {
                 //buscar dados do usuario
                 try{
-                    const result = await fetch(`${process.env.URL-Backend}/user/getUser/${userId}`, {
+                    const result = await fetch(`${process.env.REACT_APP_URLBackend}/user/getUser/${userId}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export function ProfileConfigurations(){
 
 
         try{
-            const response = await fetch(`${process.env.URL-Backend}/user/updateUser/${userId}`, {
+            const response = await fetch(`${process.env.REACT_APP_URLBackend}/user/updateUser/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ export function ProfileConfigurations(){
     async function deletarPerfil(){
         const userId = localStorage.getItem("userId")
         try {
-            const resultado = await fetch(`${process.env.URL-Backend}/user/deleteUser/${userId}`, {
+            const resultado = await fetch(`${process.env.REACT_APP_URLBackend}/user/deleteUser/${userId}`, {
                 method: "DELETE",
                 headers: {
                     'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ export function ProfileConfigurations(){
 
     async function authUpdate(){
         try{
-            const response = await fetch(`${process.env.URL-Backend}/xbox/authUpdate/${localStorage.getItem("userId")}`, {
+            const response = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/authUpdate/${localStorage.getItem("userId")}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

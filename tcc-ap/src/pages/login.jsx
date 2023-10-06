@@ -17,7 +17,7 @@ export function Login(){
         };
       
         try{
-            const LoginResponse = await fetch(`${process.env.URL-Backend}/user/loginuser`, {
+            const LoginResponse = await fetch(`${process.env.REACT_APP_URLBackend}/user/loginuser`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export function Login(){
               localStorage.setItem("AuthToken", LoginJson.token)
               localStorage.setItem("userId", LoginJson.user._id)
               localStorage.setItem("nick", LoginJson.user.nick)
-              window.location.href = `${process.env.URL-Frontend}`;
+              window.location.href = `${process.env.REACT_APP_URLFrontend}`;
               setResponse(LoginJson)
             }else {
               console.log("email ou senha incorretos")

@@ -16,7 +16,7 @@ export function GetRequest(){
         (async () => {
             try{
                 const authToken = localStorage.getItem("AuthToken")
-                const resultado = await fetch(`${process.env.URL-Backend}/playerrequest/getPlayerRequest`, {
+                const resultado = await fetch(`${process.env.REACT_APP_URLBackend}/playerrequest/getPlayerRequest`, {
                     method: "GET",
                     headers: {
                         token: authToken
@@ -58,7 +58,7 @@ export function GetRequest(){
             };
 
             try {
-            const resultado = await fetch(`${process.env.URL-Backend}/playerrequest/updatePlayerRequest/${idRequest}`, {
+            const resultado = await fetch(`${process.env.REACT_APP_URLBackend}/playerrequest/updatePlayerRequest/${idRequest}`, {
                 method: "PUT",
                 headers: {
                 'Content-Type': 'application/json',

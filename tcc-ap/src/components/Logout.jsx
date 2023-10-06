@@ -4,8 +4,7 @@ export function Logout(){
     async function sairConta(){
         localStorage.removeItem("userId");
         localStorage.removeItem("AuthToken");
-
-        window.location.href = `${process.env.URL-Frontend}/entrar`;
+        window.location.href = `${process.env.REACT_APP_URLFrontend}/entrar`
 
         alert("Você saiu da conta")
     }

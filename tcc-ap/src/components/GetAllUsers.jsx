@@ -20,7 +20,7 @@ export function GetAllUsers(){
 
         try{
             const authToken = localStorage.getItem("AuthToken")
-            const resultado = await fetch(`${process.env.URL-Backend}/user/getAllUsers/${nickDigitado}`, {
+            const resultado = await fetch(`${process.env.REACT_APP_URLBackend}/user/getAllUsers/${nickDigitado}`, {
                 method: "GET",
                 headers: {
                     token: authToken
