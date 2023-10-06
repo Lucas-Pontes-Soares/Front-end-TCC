@@ -21,7 +21,7 @@ export function GetRequestByUserId() {
         const userId = localStorage.getItem('userId');
 
         const resultado = await fetch(
-          `http://localhost:3000/playerrequest/getPlayerRequestById/${userId}`,
+          `${process.env.URL-Backend}/playerrequest/getPlayerRequestById/${userId}`,
           {
             method: 'GET',
             headers: {
@@ -76,7 +76,7 @@ export function GetRequestByUserId() {
         };
   
         try {
-          const resultado = await fetch(`http://localhost:3000/playerrequest/updatePlayerRequest/${idRequest}`, {
+          const resultado = await fetch(`${process.env.URL-Backend}/playerrequest/updatePlayerRequest/${idRequest}`, {
             method: "PUT",
             headers: {
               'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ export function GetRequestByUserId() {
   async function deleteRequest(idRequest) {
     //excluir requisição selecionada pelo usuario: idRequest
     try {
-      const resultado = await fetch(`http://localhost:3000/playerrequest/deletePlayerRequest/${idRequest}`, {
+      const resultado = await fetch(`${process.env.URL-Backend}/playerrequest/deletePlayerRequest/${idRequest}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',

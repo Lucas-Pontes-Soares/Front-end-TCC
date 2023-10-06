@@ -30,7 +30,7 @@ async function updateImageUser(url){
     try{
         const userId = localStorage.getItem("userId")
         const authToken = localStorage.getItem("AuthToken")
-        const response = await fetch(`http://localhost:3000/user/updateUser/${userId}`, {
+        const response = await fetch(`${process.env.URL-Backend}/user/updateUser/${userId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

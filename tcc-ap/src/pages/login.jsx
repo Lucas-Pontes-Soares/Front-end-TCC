@@ -17,7 +17,7 @@ export function Login(){
         };
       
         try{
-            const LoginResponse = await fetch('https://gplink-backend.onrender.com/user/loginuser', {
+            const LoginResponse = await fetch(`${process.env.URL-Backend}/user/loginuser`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ export function Login(){
               localStorage.setItem("AuthToken", LoginJson.token)
               localStorage.setItem("userId", LoginJson.user._id)
               localStorage.setItem("nick", LoginJson.user.nick)
-              window.location.href = "http://localhost:3006/";
+              window.location.href = `${process.env.URL-Frontend}`;
               setResponse(LoginJson)
             }else {
               console.log("email ou senha incorretos")

@@ -22,7 +22,7 @@ export function ProfileSteam(props) {
         (async () => {
             //rota para buscar o perfil (sumario) do jogador
             try {
-                const result = await fetch(`http://localhost:3000/steam/findGetPlayerSummaries/UserId/${props.steamId}/`, {
+                const result = await fetch(`${process.env.URL-Backend}/steam/findGetPlayerSummaries/UserId/${props.steamId}/`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ export function ProfileSteam(props) {
             //rota para buscar as conquistas
             try {
                 const page = 1;
-                const result = await fetch(`http://localhost:3000/steam/findGetPlayerGames/Userid/${props.steamId}/${page}`, {
+                const result = await fetch(`${process.env.URL-Backend}/steam/findGetPlayerGames/Userid/${props.steamId}/${page}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export function ProfileSteam(props) {
         const authToken = localStorage.getItem("AuthToken");
       
         try {
-          const result = await fetch(`http://localhost:3000/steam/findGetPlayerGames/Userid/${props.steamId}/${nextPage}`, {
+          const result = await fetch(`${process.env.URL-Backend}/steam/findGetPlayerGames/Userid/${props.steamId}/${nextPage}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

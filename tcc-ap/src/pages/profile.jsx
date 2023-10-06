@@ -29,7 +29,7 @@ export function Profile() {
 
                 //buscar dados do usuario
                 try {
-                    const result = await fetch(`http://localhost:3000/user/getUserByNick/${nickURL}`, {
+                    const result = await fetch(`${process.env.URL-Backend}/user/getUserByNick/${nickURL}`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

@@ -18,7 +18,7 @@ export function ProfilePlaystation(props){
         (async () => {
             //rota para buscar o perfil do jogador
             try {
-                const result = await fetch(`http://localhost:3000/ps/findGetUserProfiles/${props.psName}`, {
+                const result = await fetch(`${process.env.URL-Backend}/ps/findGetUserProfiles/${props.psName}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export function ProfilePlaystation(props){
 
             //rota para buscar as conquistas
             try {
-                const result = await fetch(`http://localhost:3000/ps/findGetUserTitles/${props.psName}`, {
+                const result = await fetch(`${process.env.URL-Backend}/ps/findGetUserTitles/${props.psName}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

@@ -5,7 +5,7 @@ export function Logout(){
         localStorage.removeItem("userId");
         localStorage.removeItem("AuthToken");
 
-        window.location.href = "http://localhost:3006/entrar";
+        window.location.href = `${process.env.URL-Frontend}/entrar`;
 
         alert("Você saiu da conta")
     }
