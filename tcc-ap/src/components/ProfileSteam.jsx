@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import styles from '../styles/perfil.module.css'
 
 export function ProfileSteam(props) {
-    const [steamData, setSteamData] = useState([]);
-    const [steamConquistas, setSteamConquistas] = useState([]);
-    const [nextPage, setNextPage] = useState([]);
+    const [steamData, setSteamData] = useState('');
+    const [steamConquistas, setSteamConquistas] = useState('');
+    const [nextPage, setNextPage] = useState('');
 
     // esse css é apenas para teste, separar em cada perfil em um canto
     const estilo = {
