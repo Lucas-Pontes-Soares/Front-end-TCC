@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import styles from '../styles/perfil.module.css'
 
 export function ProfileSteam(props) {
-    const [steamData, setSteamData] = useState('');
-    const [steamConquistas, setSteamConquistas] = useState('');
+    const [steamData, setSteamData] = useState([]);
+    const [steamConquistas, setSteamConquistas] = useState([]);
     const [nextPage, setNextPage] = useState('');
 
     // esse css é apenas para teste, separar em cada perfil em um canto
@@ -30,7 +30,8 @@ export function ProfileSteam(props) {
                     },
                 })
                 const resultado = await result.json()
-                setSteamData(resultado.Summaries.response.players[0])
+                console.log(resultado)
+                setSteamData(resultado.message.Summaries.response.players[0])
             } catch (err) {
                 console.log("erro " + err)
             }
@@ -46,9 +47,9 @@ export function ProfileSteam(props) {
                     },
                 })
                 const resultado = await result.json()
-                console.log(resultado.games)
-                setSteamConquistas(prevConquistas => [...prevConquistas, ...resultado.games]);
-                setNextPage(resultado.nextPage);
+                console.log(resultado.message.games)
+                setSteamConquistas(prevConquistas => [...prevConquistas, ...resultado.message.games]);
+                setNextPage(resultado.message.nextPage);
             } catch (err) {
                 console.log("erro " + err)
             }
@@ -67,9 +68,9 @@ export function ProfileSteam(props) {
             },
           });
           const resultado = await result.json();
-          console.log(resultado.games)
-          setSteamConquistas(prevConquistas => [...prevConquistas, ...resultado.games]);
-          setNextPage(resultado.nextPage);
+          console.log(resultado.message.games)
+          setSteamConquistas(prevConquistas => [...prevConquistas, ...resultado.message.games]);
+          setNextPage(resultado.message.nextPage);
         } catch (err) {
           console.log("erro " + err);
         }

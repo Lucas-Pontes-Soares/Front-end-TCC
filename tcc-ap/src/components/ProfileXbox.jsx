@@ -16,7 +16,7 @@ export function ProfileXbox(props){
         (async () => {
             //rota para buscar o perfil do jogador
             try {
-                const result = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/findGetUserProfile/${props.loginId}`, {
+                const result = await fetch(`${process.env.REACT_APP_URLProxy}/xbox/findGetUserProfileProxy/${props.loginId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,15 +24,15 @@ export function ProfileXbox(props){
                     },
                 })
                 const resultado = await result.json()
-                console.log(resultado);
-                setXboxData(resultado.profile.profileUsers[0])
+                console.log(resultado.message);
+                setXboxData(resultado.message.profile.profileUsers[0])
             }catch(err){
                 console.log("erro " + err)
             }
 
             //função para consultar a api de buscar as conquistas
             async function buscarConquistas(arrayJogos, limite){
-                const result = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/findGetUserAchievements/${props.loginId}`, {
+                const result = await fetch(`${process.env.REACT_APP_URLProxy}/xbox/findGetUserAchievementsProxy/${props.loginId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export function ProfileXbox(props){
             try {
                 let limite = 0;
 
-                const result = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/findGetUserAchievements/${props.loginId}`, {
+                const result = await fetch(`${process.env.REACT_APP_URLProxy}/xbox/findGetUserAchievementsProxy/${props.loginId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

@@ -77,7 +77,7 @@ export function Profile() {
                 <div className={styles.perfilPlataformas}>
                     Xbox
                     <img src= {require('../image/xbox.png')} alt="steam" heigth="80px" width="80px"/>
-                {/* userXboxToken ? <ProfileXbox loginId={userXboxToken} /> : <p>Perfil não sincronizado!</p>*/ }
+                { userXboxToken ? <ProfileXbox loginId={userXboxToken} /> : <p>Perfil não sincronizado!</p> }
                 </div>
                 <div className={styles.perfilPlataformas}>
                     Playstation
