@@ -6,6 +6,7 @@ export function ProfileXbox(props){
     const [xboxConquistas, setXboxConquistas] = useState(null);
 
     useEffect(() => {
+        console.log("XBOX")
         const authToken = localStorage.getItem("AuthToken")
         if (authToken) {
             console.log("Vc esta logado")
@@ -76,6 +77,7 @@ export function ProfileXbox(props){
                 */
                 if(resultado.message.length >= 1){
                     limite = limite + 32;
+                    console.log(resultado.message)
                     await buscarConquistas(resultado.message, limite)
                 }
             }catch(err){

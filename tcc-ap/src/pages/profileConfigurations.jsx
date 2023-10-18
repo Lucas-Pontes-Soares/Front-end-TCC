@@ -44,14 +44,20 @@ export function ProfileConfigurations(){
         }
     }, [])
 
-    async function atualizarDados(){
+    async function atualizarDados(xboxToken){
         const first_name = document.getElementById("first_name");
         const last_name = document.getElementById("last_name")
         const nick = document.getElementById("nick")
         const email = document.getElementById("email")
         const steamId = document.getElementById("steam")
         const PSname = document.getElementById("ps")
-        const xbox = document.getElementById("xbox")
+        let xbox = null
+        if(xboxToken) {
+            xbox = xboxToken
+        } else {
+             xbox = document.getElementById("xbox")
+        }
+       
 
         const userId = localStorage.getItem("userId")
         const authToken = localStorage.getItem("AuthToken")
@@ -123,7 +129,7 @@ export function ProfileConfigurations(){
 
     async function authUpdate(){
         try{
-            const response = await fetch(`${process.env.REACT_APP_URLBackend}/xbox/authUpdate/${localStorage.getItem("userId")}`, {
+            const response = await fetch(`${process.env.REACT_APP_URLProxy}/xbox/authUpdateProxy/${localStorage.getItem("userId")}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,8 +137,8 @@ export function ProfileConfigurations(){
             })
             const resposta = await response.json()
             console.log(resposta)
-            setResponseXbox(resposta)
-            atualizarDados()
+            setResponseXbox(resposta.dados)
+            atualizarDados(localStorage.getItem("userId"))
         }catch(erro){
             console.log("erro "+ erro)
         }
